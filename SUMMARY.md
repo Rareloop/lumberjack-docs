@@ -6,7 +6,7 @@
 
 * [Installation](getting-started/installation.md)
 * [Quick Start](getting-started/quick-start.md)
-* [Configuration](getting-started/untitled.md)
+* [Configuration](getting-started/configuration.md)
 
 ## The Basics
 
@@ -18,14 +18,14 @@
 
 ## Container
 
-* [Using the Container](container/dependency-injection.md)
+* [Using the Container](container/using-the-container.md)
 * [Service Providers](container/service-providers.md)
-* [Facades](container/untitled.md)
+* [Facades](container/facades.md)
 
 ## Misc
 
 * [Changelog](misc/changelog.md)
-* [Contributing](misc/untitled.md)
+* [Contributing](misc/contributing.md)
 * [Notable Mentions](misc/notable-mentions.md)
 * [Code of Conduct](misc/code-of-conduct.md)
 * [View on GitHub](https://github.com/Rareloop/lumberjack)

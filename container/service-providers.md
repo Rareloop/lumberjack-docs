@@ -38,11 +38,11 @@ Now, whenever we need to use a payment gateway in our application we can resolve
 
 #### Binding to the container
 
-There are a number of different ways to bind things to the container. Head over to ['Using the Container'](dependency-injection.md) for more information.
+There are a number of different ways to bind things to the container. Head over to ['Using the Container'](using-the-container.md) for more information.
 
 ### Boot
 
-Once all service providers have been registered, Lumberjack then attempts to call the `boot` method on each one. This means that you have access to everything that has been bound to the container and can access it using [dependency injection ](dependency-injection.md#dependency-injection)on the `boot` method.
+Once all service providers have been registered, Lumberjack then attempts to call the `boot` method on each one. This means that you have access to everything that has been bound to the container and can access it using [dependency injection ](using-the-container.md#dependency-injection)on the `boot` method.
 
 ```text
 namespace App\Providers;
