@@ -28,4 +28,5 @@
 * [Contributing](misc/untitled.md)
 * [Notable Mentions](misc/notable-mentions.md)
 * [Code of Conduct](misc/code-of-conduct.md)
+* [View on GitHub](https://github.com/Rareloop/lumberjack)
 
