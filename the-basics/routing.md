@@ -1,8 +1,8 @@
 # Routing
 
-The Lumberjack Router is based on the standalone [Rareloop Router](https://github.com/Rareloop/router) but utilised a Facade to make setup and access simpler.
+The Lumberjack Router is based on the standalone [Rareloop Router](https://github.com/Rareloop/router) but utilises a Facade to make setup and access simpler.
 
-Sometimes you want to create a page on your website but do not want it editable in WordPress. That's when this router comes into play. It can also be used to make AJAX enpoints.
+Sometimes you want to create a page on your website but do not want it editable in WordPress. That's when this router comes into play. It can also be used to make AJAX endpoints.
 
 If you set up a custom route that has the same URL as a WordPress page, the router takes priority.
 
@@ -119,7 +119,7 @@ At it's simplest, adding Middleware to a route can be done by passing an object 
 ```php
 $middleware = new AddHeaderMiddleware('X-Key1', 'abc');
 
-Routet::get('route/uri', '\MyNamespace\TestController@testMethod')->middleware($middleware);
+Router::get('route/uri', '\MyNamespace\TestController@testMethod')->middleware($middleware);
 ```
 
 Multiple middleware can be added by passing more params to the `middleware()` function:
