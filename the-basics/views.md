@@ -39,19 +39,19 @@ use App\PostTypes\ProductType;
 
 class SingleProductController
 {
-    public function handle()
-    {
-        $context = Timber::get_context();
-        $product = new Product();
-        $context['post'] = $product;
-        $context['title'] = $product->title;
-        $context['content'] = $product->content;
+	public function handle()
+	{
+        	$context = Timber::get_context();
+        	$product = new Product();
+        	$context['post'] = $product;
+        	$context['title'] = $product->title;
+        	$context['content'] = $product->content;
 
-		  // get the price field
-		  $context['price'] = $product->price();
+		// get the price field
+		$context['price'] = $product->price();
         
-        return new TimberResponse('templates/products-page.twig', $context);
-    }
+        	return new TimberResponse('templates/products-page.twig', $context);
+	}
 }
 ```
 
@@ -63,10 +63,10 @@ Finally in our twig template we can now output our price value the same way we a
 {% extends "base.twig" %}
 
 {% block content %}
-    <main>
-        <h1>{{ title }}</h1>
-        {{ content|raw }}
-        <h3>Price: {{ price }}</h3>
-    </main>
+	<main>
+		<h1>{{ title }}</h1>
+		{{ content|raw }}
+		<h3>Price: {{ price }}</h3>
+	</main>
 {% endblock %}
 ```
