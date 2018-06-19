@@ -20,8 +20,8 @@ To get started with Lumberjack on top of [Bedrock](https://roots.io/bedrock/), j
    * `DB_PASSWORD` - Database password
    * `DB_HOST` - Database host
    * `WP_ENV` - Set to environment \(`development`, `staging`, `production`\)
-   * `WP_HOME` - Full URL to WordPress home \([http://example.com\](http://example.com\)\)
-   * `WP_SITEURL` - Full URL to WordPress including subdirectory \([http://example.com/wp\](http://example.com/wp\)\)
+   * `WP_HOME` - Full URL to WordPress home \([http://example.com\](http://example.com%29\)
+   * `WP_SITEURL` - Full URL to WordPress including subdirectory \([http://example.com/wp\](http://example.com/wp%29\)
    * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` - Generate with [wp-cli-dotenv-command](https://github.com/aaemnnosttv/wp-cli-dotenv-command) or from the [Roots WordPress Salt Generator](https://cdn.roots.io/salts.html)
 3. Set your site vhost document root to `/path/to/site/web/` \(`/path/to/site/current/web/` if using deploys\)
 4. Access WP admin at `http://example.com/wp/wp-admin` and activate the Lumberjack theme
