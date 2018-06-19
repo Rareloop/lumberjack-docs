@@ -58,11 +58,11 @@ class OptionPagesProvider extends ServiceProvider
     public class boot(Config $config)
     {
         $optionPages = $config->get('option-pages');
-        
+
         if (!is_array($optionPages)) {
             return;
          }
-         
+
          foreach ($optionPages as $optionPage) {
              acf_add_options_page($optionPage);
          }
@@ -78,7 +78,7 @@ Once you have your service provider ready to go, you need to add the name of the
 return [
     'providers' => [
         // ...
-        
+
         App\Providers\TwitterProvider::class,
     ],
 ];

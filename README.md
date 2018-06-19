@@ -6,5 +6,3 @@ The framework has been designed to be as un-intrusive as possible and you're fre
 
 Written & maintained by the team at [Rareloop](https://www.rareloop.com/).
 
-
-

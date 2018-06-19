@@ -165,5 +165,3 @@ Router::group(['prefix' => 'my-prefix', 'middleware' => [$header, $auth]]), func
 });
 ```
 
-
-

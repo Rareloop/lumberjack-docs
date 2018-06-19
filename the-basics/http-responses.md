@@ -1,7 +1,5 @@
 # HTTP Responses
 
-
-
 ## Introduction
 
 All of your WordPress and Router controllers should return PSR7 compliant response. The most common use-case is rendering a `twig` view and passing in some context. Using Timber it would look like this:
