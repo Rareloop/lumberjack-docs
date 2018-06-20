@@ -10,6 +10,22 @@ You can tell Lumberjack to create global functions for you if you do not mind ab
 
 If you are building packages or plugins specifically for Lumberjack, you cannot rely on the global helper functions as the theme may not have made them available.
 
+## Adding Global Helpers
+
+In order to use the global helper functions, all you need to do it tell composer to autoload `vendor/rareloop/lumberjack-core/src/functions.php`.
+
+Add the following to your top-level `composer.json` file:
+
+```json
+"autoload": {
+    "files": [
+        "vendor/rareloop/lumberjack-core/src/functions.php"
+    ]
+}
+```
+
+Then, tell composer to regenerate its list of autoloaded files by running `composer dump-autoload`.
+
 ## Available Helpers
 
 - app
@@ -63,8 +79,39 @@ config(['app.logs.enabled' => false]);
 The `view` helper returns a new `Rareloop\Lumberjack\Http\Responses\TimberResponse`.
 
 ```php
-\Rareloop\Lumberjack\Helpers::view('templates/posts.twig', $context, 200, $headers);
+return \Rareloop\Lumberjack\Helpers::view('templates/posts.twig', $context, 200, $headers);
 
 // Global function
-view('templates/posts.twig', $context, 200, $headers);
+return view('templates/posts.twig', $context, 200, $headers);
+```
+
+### route
+
+The `route` helper generates a URL from a named route.
+
+```php
+$url = \Rareloop\Lumberjack\Helpers::route('posts.index');
+
+// Global function
+$url = route('posts.index');
+```
+
+If the route requires parameters you can be pass an associative array as a second parameter:
+
+```php
+$url = \Rareloop\Lumberjack\Helpers::route('posts.show', ['id' => 123]);
+
+// Global function
+$url = route('posts.show', ['id' => 123]);
+```
+
+### redirect
+
+The `redirect` helper returns a new `Zend\Diactoros\Response\RedirectResponse`, which redirects the user to a given URL.
+
+```php
+$url = \Rareloop\Lumberjack\Helpers::redirect('/auth/login', 200, $headers);
+
+// Global function
+$url = redirect('/auth/login', 200, $headers);
 ```
