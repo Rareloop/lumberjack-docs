@@ -15,7 +15,7 @@ namespace App;
 
 use Timber\Timber;
 use Rareloop\Lumberjack\Post;
-use App\Http\Responses\TimberResponse;
+use Rareloop\Lumberjack\Http\Responses\TimberResponse;
 
 class PageHomeController
 {
