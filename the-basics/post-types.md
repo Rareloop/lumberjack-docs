@@ -68,7 +68,6 @@ You can use this boilerplate to get you started:
 namespace App\PostTypes;
 
 use Rareloop\Lumberjack\Post;
-use Rareloop\Lumberjack\QueryBuilder\Post as QueryBuilderPost;
 
 class Product extends Post
 {
@@ -99,6 +98,7 @@ class Product extends Post
                 'singular_name' => __('Product'),
                 'add_new_item' => __('Add New Product'),
             ],
+            'public' => true,
         ];
     }
 }
@@ -126,7 +126,7 @@ return [
 And that's it! You can now start using your new Custom Post Type.
 
 {% hint style="info" %}
-**Tip**: Try and avoid using ACF's `get_field` outside of a Post Type class. This will help make your application easy to change.
+**Tip**: Try and avoid using ACF's `get_field` outside of a Post Type class where possible. This will help make your application easy to change.
 {% endhint %}
 
 ```php
@@ -145,7 +145,7 @@ Lumberjack's `Post` class extends `Timber\Post`, and adds some convenient method
 
 ```php
 use Rareloop\Lumberjack\Post;
-use Rareloop\Lumberjack\Product;
+use App\PostTypes\Product;
 
 // Get all published posts, with 10 per page, ordered ascending by title
 $posts = Post::all(10, 'title', 'asc');
@@ -153,4 +153,3 @@ $posts = Post::all(10, 'title', 'asc');
 // Accepts the WP_Query args as an array. By default it will filter by published posts for the correct post type too
 $products = Product::query(['s' => 'Toy Car']);
 ```
-
