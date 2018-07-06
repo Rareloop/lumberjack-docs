@@ -4,7 +4,7 @@
 
 Lumberjack provides a handful of helpful functions that should make your life a little easier.
 
-By default they are available as static methods on the `c` class, so that the global namespace isn't getting polluted. You can safely use these methods without fear of function names clashing.
+By default they are available as static methods on the `\Rareloop\Lumberjack\Helpers` class, so that the global namespace isn't getting polluted. You can safely use these methods without fear of function names clashing.
 
 You can tell Lumberjack to create global functions for you if you do not mind about adding these functions to the global namespace.
 
