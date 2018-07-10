@@ -44,7 +44,7 @@ There are a number of different ways to bind things to the container. Head over 
 
 Once all service providers have been registered, Lumberjack then attempts to call the `boot` method on each one. This means that you have access to everything that has been bound to the container and can access it using [dependency injection ](using-the-container.md#dependency-injection)on the `boot` method.
 
-```text
+```php
 namespace App\Providers;
 
 use Rareloop\Lumberjack\Providers\ServiceProvider;
