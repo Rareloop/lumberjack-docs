@@ -55,7 +55,7 @@ use Rareloop\Lumberjack\Providers\ServiceProvider;
 class OptionPagesProvider extends ServiceProvider
 {
     // Dependency inject Config from the container
-    public class boot(Config $config)
+    public function boot(Config $config)
     {
         $optionPages = $config->get('option-pages');
 
