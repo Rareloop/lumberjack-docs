@@ -31,7 +31,7 @@ Router::get('posts/{id}', function(RouteParams $params) {
 });
 ```
 
-## Names Routes
+## Named Routes
 
 Routes can be named so that their URL can be generated programatically:
 
