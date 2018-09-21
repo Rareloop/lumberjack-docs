@@ -3,11 +3,11 @@
 A Request object can be injected into your controllers, e.g.
 
 ```
-todo: use
+use Rareloop\Lumberjack\Http\ServerRequest;
 
 class MyController
 {
-    public function show(RequestInterface $request)
+    public function show(ServerRequest $request)
     {
     
     }
