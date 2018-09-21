@@ -16,6 +16,6 @@ composer require rareloop/lumberjack-core
 ```
 
 {% hint style="warning" %}
-_Currently using a child-theme to extend this theme is unsupported._
+_Currently using a child-theme to extend this theme is unsupported_
 {% endhint %}
 
