@@ -4,7 +4,7 @@ The HTTP protocol is inherently stateless. If you want to maintain some data bet
 ## Configuration
 The Session is configured using the `config/session.php` file. By default Lumberjack is configured to store all session data as files on the disk.
 
-TODO: Outline configuration options and talk about how encryption can be enabled.
+TODO: Outline configuration options and talk about how encryption can be enabled
 
 ## Usage
 
