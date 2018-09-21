@@ -115,3 +115,29 @@ $url = \Rareloop\Lumberjack\Helpers::redirect('/auth/login', 200, $headers);
 // Global function
 $url = redirect('/auth/login', 200, $headers);
 ```
+
+### session
+
+You can use the `session` helper to retrieve and store data in the current session. Passing in 1 (string) arguement will get the value of that item from the session. Passing in an array of key/value pairs will add each pair to the session.
+
+```php
+// Get a value from the session
+$name = \Rareloop\Lumberjack\Helpers::session('name');
+
+// Get a value from the session, with a default
+$name = \Rareloop\Lumberjack\Helpers::session('name', 'default');
+
+// Set a value to the session
+\Rareloop\Lumberjack\Helpers::session(['key' => 'value']);
+
+// And using the Global function instead
+
+// Get a value from the session
+$name = session('name');
+
+// Get a value from the session, with a default
+$name = session('name', 'default');
+
+// Store a value to the session
+session(['key' => 'value']);
+```
