@@ -130,7 +130,11 @@ $name = \Rareloop\Lumberjack\Helpers::session('name', 'default');
 // Set a value to the session
 \Rareloop\Lumberjack\Helpers::session(['key' => 'value']);
 
-// And using the Global function instead
+// Call any method on a session
+\Rareloop\Lumberjack\Helpers::session()->forget('key');
+
+// And using the Global function instead:
+
 
 // Get a value from the session
 $name = session('name');
@@ -140,4 +144,7 @@ $name = session('name', 'default');
 
 // Store a value to the session
 session(['key' => 'value']);
+
+// Call any method on a session
+session()->forget('key');
 ```
