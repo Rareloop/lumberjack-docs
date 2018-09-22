@@ -112,3 +112,42 @@ If you're injecting an instance of the Diactoros `ServerRequest` class into a Co
 ```
 Rareloop\Lumberjack\Http\ServerRequest
 ```
+
+### `ViewModels`
+The `ViewModel` base class no longer extends from `stdClass` and so can no longer have arbitrary properties set on it. We'd suggest upgrading your existing ViewModels to either use public methods or public properties. 
+
+If your project has a large number of ViewModel's, the simplest change is to specifically name all properties in the class, e.g.
+
+```
+// Lumberjack v3
+use Rareloop\Lumberjack\ViewModel;
+
+class MyViewModel extends ViewModel
+{
+    public function __construct($post)
+    {
+        $this->title = $post->title;
+        $this->link = $post->link;
+    }
+}
+```
+
+to:
+
+```
+// Lumberjack v4
+use Rareloop\Lumberjack\ViewModel;
+
+class MyViewModel extends ViewModel
+{
+    // Declare the class properties
+    public $title;
+    public $link;
+
+    public function __construct($post)
+    {
+        $this->title = $post->title;
+        $this->link = $post->link;
+    }
+}
+```
