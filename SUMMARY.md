@@ -13,6 +13,7 @@
 * [Lifecycle](the-basics/lifecycle.md)
 * [Post Types](the-basics/post-types.md)
 * [WordPress Controllers](the-basics/wordpress-controllers.md)
+* [Views](the-basics/views.md)
 * [Routing](the-basics/routing.md)
 * [HTTP Responses](the-basics/http-responses.md)
 
