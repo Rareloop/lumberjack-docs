@@ -1,6 +1,6 @@
 # HTTP Requests
 
-A Request object can be injected into your controllers, e.g.
+To access the current Request object you can be inject it into your Controller by using the `Rareloop\Lumberjack\Http\ServerRequest` type hint, e.g.
 
 ```
 use Rareloop\Lumberjack\Http\ServerRequest;
