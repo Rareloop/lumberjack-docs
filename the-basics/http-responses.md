@@ -11,7 +11,9 @@ If your Controller returns a string it will be automatically converted to an `Ht
 ## Available Response Objects
 
 ### Timber Response
+
 The most common use-case will be to render a Twig view with some associated data. Using Timber on it's own, your code would look like this:
+
 ```php
 use Timber\Timber;
 
@@ -31,9 +33,11 @@ return new TimberResponse('home.twig', $context);
 ```
 
 #### Context Flattening
+
 When passing context data to TimberResponse, any objects that implement the `Rareloop\Lumberjack\Contracts\Arrayable` contract will automatically be flattened to a standard PHP array. This means that it is safe to use objects such as `Collection` and `ViewModel` in your data without it causing issues with Twig.
 
 ### Redirect Response
+
 Redirecting to a different URL can be done by returning an instance of `Rareloop\Lumberjack\Http\Responses\RedirectResponse`.
 
 ```php
@@ -45,14 +49,16 @@ return new RedirectResponse('/another/page');
 ```
 
 #### Adding Flash Data
+
 If you want to redirect to a URL and also flash some data to the session, you can use the `with()` method.
 
-```
+```text
 return new RedirectResponse('/another/page')
     ->with('error', 'Something went wrong');
 ```
 
 ### Diactoros Responses
+
 Lumberjack also includes the fantastic [Zend Diactoros](https://github.com/zendframework/zend-diactoros) package which provides additional PSR7 compliant Response Objects.
 
 ```php
@@ -66,6 +72,7 @@ $response = new Zend\Diactoros\Response\EmptyResponse(); // Basic 204 response:
 ```
 
 ## Adding Status Code & Headers
+
 One of the benefits of using Response Objects is that they make it easier to control the HTTP status code & headers.
 
 All the Response Objects bundled with Lumberjack let you set both the status code and headers in their constructor.
@@ -85,3 +92,4 @@ return (new JsonResponse($data, 422))
     ->withStatus(422)
     ->withHeader('X-Total-Validation-Errors', 2);
 ```
+

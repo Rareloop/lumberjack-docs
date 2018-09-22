@@ -16,7 +16,7 @@ In order to use the global helper functions, all you need to do it tell composer
 
 Add the following to your top-level `composer.json` file:
 
-```json
+```javascript
 "autoload": {
     "files": [
         "vendor/rareloop/lumberjack-core/src/functions.php"
@@ -28,11 +28,11 @@ Then, tell composer to regenerate its list of autoloaded files by running `compo
 
 ## Available Helpers
 
-- app
-- config
-- view
-- route
-- redirect
+* app
+* config
+* view
+* route
+* redirect
 
 ### app
 
@@ -118,7 +118,7 @@ $url = redirect('/auth/login', 200, $headers);
 
 ### session
 
-You can use the `session` helper to retrieve and store data in the current session. Passing in 1 (string) arguement will get the value of that item from the session. Passing in an array of key/value pairs will add each pair to the session.
+You can use the `session` helper to retrieve and store data in the current session. Passing in 1 \(string\) arguement will get the value of that item from the session. Passing in an array of key/value pairs will add each pair to the session.
 
 ```php
 // Get a value from the session
@@ -148,3 +148,4 @@ session(['key' => 'value']);
 // Call any method on a session
 session()->forget('key');
 ```
+

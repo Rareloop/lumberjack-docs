@@ -1,4 +1,4 @@
-# Documentation
+# Introduction
 
 A framework for making WordPress theme development more sane & easier to maintain.
 
