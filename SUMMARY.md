@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Documentation](README.md)
+* [Introduction](README.md)
 
 ## Getting Started
 
@@ -11,10 +11,16 @@
 ## The Basics
 
 * [Lifecycle](the-basics/lifecycle.md)
-* [Post Types](the-basics/post-types.md)
-* [WordPress Controllers](the-basics/wordpress-controllers.md)
 * [Routing](the-basics/routing.md)
+* [WordPress Controllers](the-basics/wordpress-controllers.md)
+* [Post Types](the-basics/post-types.md)
+* [Helpers](the-basics/helpers.md)
+* [HTTP Requests](the-basics/http-requests.md)
 * [HTTP Responses](the-basics/http-responses.md)
+* [Sessions](the-basics/session.md)
+* [View Models](the-basics/view-models.md)
+* [Logging](the-basics/logging.md)
+* [Error Handling](the-basics/error-handling.md)
 
 ## Container
 
