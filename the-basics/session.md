@@ -96,12 +96,28 @@ Session::reflash();
 ```
 
 ### Deleting Data
-To remove data from the session you use the `forget()` function:
+To remove a specific item from the session you use the `forget()` method.
 
 ```php
 use Rareloop\Lumberjack\Facades\Session;
 
 Session::forget('key');
+```
+
+To remove multiple items from the session you can pass an array of keys into the `forget()` method.
+
+```php
+use Rareloop\Lumberjack\Facades\Session;
+
+Session::forget(['key1', 'key2']);
+```
+
+To remove all items from the session, you can use the `flush()` method.
+
+```php
+use Rareloop\Lumberjack\Facades\Session;
+
+Session::flush();
 ```
 
 ## Adding Custom Storage Drivers
