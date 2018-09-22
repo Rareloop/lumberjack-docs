@@ -1,14 +1,19 @@
 # Routing
 
-The Lumberjack Router is based on the standalone [Rareloop Router](https://github.com/Rareloop/router) but utilises a Facade to make setup and access simpler.
+## Introduction
 
-Sometimes you want to create a page on your website but do not want it editable in WordPress. That's when this router comes into play. It can also be used to make AJAX endpoints.
+Sometimes you may want to create a page on your website but not need/want it editable in WordPress. That's when the custom Lumberjack router comes into play. It can also be used to make AJAX endpoints.
 
+{% hint style="warning" %}
 If you set up a custom route that has the same URL as a WordPress page, the router takes priority.
+{% endhint %}
 
-Note: Route closures and controller functions are automatically dependency injected from the container.
+{% hint style="info" %}
+Route closures and controller functions are automatically dependency injected from the container.
+{% endhint %}
 
 ## Creating Routes
+Routing is handled by using the `Rareloop\Lumberjack\Facades\Router` Facade. The convention is to create your Routes in the `routes.php` file at the base of your theme.
 
 Typically, you only need to allow one HTTP verb for a route \(e.g. `POST` or `GET`\). To create a route, use the HTTP verb as the method name. The first parameter is the URI and the second is the code you wish to execute when that route is matched.
 
