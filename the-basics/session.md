@@ -10,6 +10,10 @@ TODO: Outline configuration options and talk about how encryption can be enabled
 
 ## Usage
 
+{% hint style="info" %}
+If you're using the [global helpers](https://rareloop.gitbook.io/lumberjack-staging/~/drafts/-LN1oYj4aN7cENr4_AD6/primary/the-basics/helpers#session), you can use the `session()` helper function instead of the `Session` facade.
+{% endhint %}
+
 ### Retrieving Data
 
 The primary way to work with session data is via the `Session` Facade:
