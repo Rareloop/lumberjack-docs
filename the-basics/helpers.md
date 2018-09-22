@@ -149,3 +149,13 @@ session(['key' => 'value']);
 session()->forget('key');
 ```
 
+### request
+
+The `request` helper returns the current `ServerRequest` object.
+
+```php
+$request = \Rareloop\Lumberjack\Helpers::request();
+
+// Global function
+$request = request();
+```
