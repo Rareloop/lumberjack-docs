@@ -11,7 +11,11 @@ TODO: Outline configuration options and talk about how encryption can be enabled
 ## Usage
 
 {% hint style="info" %}
-If you're using the [global helpers](https://rareloop.gitbook.io/lumberjack-staging/~/drafts/-LN1oYj4aN7cENr4_AD6/primary/the-basics/helpers#session), you can use the `session()` helper function instead of the `Session` facade.
+If you're using the [global helpers](https://rareloop.gitbook.io/lumberjack-staging/~/drafts/-LN1oYj4aN7cENr4_AD6/primary/the-basics/helpers#session), you can use the `session()` helper function instead of the `Session` facade. For example:
+
+```php
+$value = session('key', 'default');
+```
 {% endhint %}
 
 ### Retrieving Data
@@ -71,17 +75,34 @@ To store data into the session you use the `put()` function:
 ```php
 use Rareloop\Lumberjack\Facades\Session;
 
-Session::put('key', 'default');
+Session::put('key', 'value');
 ```
 
-#### Adding Data to Array Session Values
+You can pass in an array of key/value pairs to add multiple items.
+
+```php
+use Rareloop\Lumberjack\Facades\Session;
+
+Session::put([
+    'key' =>'value',
+    'foo' => 'bar',
+]);
+```
+
+#### Adding items to an array
 
 If you have an array in your session, you can add new data to it by using the `push()` function:
 
 ```php
 use Rareloop\Lumberjack\Facades\Session;
 
-Session::push('key', 'default');
+Session::push('key', 'value');
+
+Session::all(); // [ 'key' => ['value'] ]
+
+Session::push('key', 'another');
+
+Session::all(); // [ 'key' => ['value', 'another] ]
 ```
 
 ### Flash Data
@@ -93,7 +114,18 @@ You can achieve this easily in Lumberjack using the `flash()` function:
 ```php
 use Rareloop\Lumberjack\Facades\Session;
 
-Session::flash('key', 'default');
+Session::flash('key', 'value');
+```
+
+You can pass in an array of key/value pairs to flash multiple items.
+
+```php
+use Rareloop\Lumberjack\Facades\Session;
+
+Session::flash([
+    'key' =>'value',
+    'foo' => 'bar',
+]);
 ```
 
 If you later decide that you need the data to persist in the session you can do this in two ways. Use the `keep()` to select specific keys to retain or `reflash()` to store all flash data for an additional request.
