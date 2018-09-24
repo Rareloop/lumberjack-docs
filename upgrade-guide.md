@@ -2,13 +2,15 @@
 
 ## Upgrading to v4 from v3
 
+We aim to document all the changes that could impact your theme, and there may only be a portion that are applicable to your theme.
+
 ### PHP Version
 
 {% hint style="warning" %}
 **Likelihood Of Impact: High**
 {% endhint %}
 
-Support for PHP 7.0 has been dropped, ensure you're running at least PHP 7.1.
+Support for **PHP 7.0 has been dropped**, ensure you're running at least **PHP 7.1**.
 
 ### Container
 
@@ -150,7 +152,7 @@ Rareloop\Lumberjack\Http\Router
 ### `ServerRequest` class \(optional\)
 
 {% hint style="warning" %}
-**Likelihood Of Impact: Very low**
+**Likelihood Of Impact: Optional, but recommended**
 {% endhint %}
 
 If you're injecting an instance of the Diactoros `ServerRequest` class into a Controller, you can now switch this out for the following class if you want to benefit from some of the [new helper functions](the-basics/http-requests.md#usage):
@@ -159,5 +161,116 @@ If you're injecting an instance of the Diactoros `ServerRequest` class into a Co
 Rareloop\Lumberjack\Http\ServerRequest
 ```
 
+For example:
 
+```text
+use Rareloop\Lumberjack\Http\ServerRequest;
+
+class MyController
+{
+    public function show(ServerRequest $request)
+    {
+        $name = $request->input('name');
+    }
+}
+```
+
+{% hint style="info" %}
+If you have enabled [global helpers](the-basics/helpers.md#request), you can use access the current `ServerRequest` instance using the `request()`helper instead of using dependency injection. For example:
+
+```php
+class MyController
+{
+    public function show()
+    {
+        $name = $request->input('name');
+    }
+}
+```
+{% endhint %}
+
+Here's a quick overview of what the new `ServerRequest` object can do. _If you are using_ [_global helpers_](the-basics/helpers.md#request)_, you can replace `$request` with `request()` instead in the examples below:_
+
+#### **Query Parameters**
+
+```php
+// Get all query parameters
+$request->query();
+
+// Get a specific query parameter
+$request->query('name');
+
+// Get a specific query parameter with a default
+$request->query('name', 'Jane');
+```
+
+#### Input
+
+```php
+// Get all input params (from $_GET and $_POST)
+$request->input();
+
+// Get a specific input parameter
+$request->input('name');
+
+// Get a specific input parameter, with a default
+$request->input('name', 'Jane');
+
+// Check if the request has a key
+$request->has('name');
+```
+
+### View Models
+
+{% hint style="warning" %}
+**Likelihood Of Impact: Medium**
+
+This is a previously undocumented feature. If you are using ViewModels, this is a major change to how they work. However, if you are not using ViewModels you do not need to do anything.
+{% endhint %}
+
+View Models are simple classes that allow you to transform data that would otherwise be defined in your controller. This allows for better encapsulation of code and allows your code to be re-used across your controllers \(and even across themes\).
+
+Head over to the new [View Model](the-basics/view-models.md) documentation to learn more.
+
+#### Upgrading existing ViewModels
+
+The `ViewModel` base class no longer extends from `stdClass` and so can no longer have arbitrary properties set on it. 
+
+We'd suggest upgrading your existing ViewModels to either use public methods or public properties. If your project has a large number of ViewModel's, the simplest change is to specifically name all properties in the class.
+
+For example:
+
+```php
+// Lumberjack v3
+use Rareloop\Lumberjack\ViewModel;
+
+class MyViewModel extends ViewModel
+{
+    public function __construct($post)
+    {
+        $this->title = $post->title;
+        $this->link = $post->link;
+    }
+}
+```
+
+To:
+
+```php
+// Lumberjack v4
+use Rareloop\Lumberjack\ViewModel;
+
+class MyViewModel extends ViewModel
+{
+    // Declare the class properties
+    public $title;
+    public $link;
+
+    public function __construct($post)
+    {
+        $this->title = $post->title;
+        $this->link = $post->link;
+    }
+}
+```
 
