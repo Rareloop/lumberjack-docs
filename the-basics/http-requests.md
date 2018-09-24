@@ -1,6 +1,7 @@
 # HTTP Requests
 
 ## Accessing the Request Instance
+
 To access the current Request object you can inject it into your Controller by using the `Rareloop\Lumberjack\Http\ServerRequest` type hint, e.g.
 
 ```text
