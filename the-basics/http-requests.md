@@ -2,14 +2,14 @@
 
 To access the current Request object you can be inject it into your Controller by using the `Rareloop\Lumberjack\Http\ServerRequest` type hint, e.g.
 
-```
+```text
 use Rareloop\Lumberjack\Http\ServerRequest;
 
 class MyController
 {
     public function show(ServerRequest $request)
     {
-    
+
     }
 }
 ```
@@ -79,3 +79,4 @@ if ($request->has(['name', 'age'])) {
     // do something if both 'name' and 'age' are present
 }
 ```
+
