@@ -13,6 +13,7 @@ Route closures and controller functions are automatically dependency injected fr
 {% endhint %}
 
 ## Creating Routes
+
 Routing is handled by using the `Rareloop\Lumberjack\Facades\Router` Facade. The convention is to create your Routes in the `routes.php` file at the base of your theme.
 
 Typically, you only need to allow one HTTP verb for a route \(e.g. `POST` or `GET`\). To create a route, use the HTTP verb as the method name. The first parameter is the URI and the second is the code you wish to execute when that route is matched.

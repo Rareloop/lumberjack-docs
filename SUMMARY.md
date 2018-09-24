@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [Upgrade Guide](upgrade-guide.md)
 
 ## Getting Started
 

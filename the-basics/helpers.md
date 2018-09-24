@@ -159,3 +159,4 @@ $request = \Rareloop\Lumberjack\Helpers::request();
 // Global function
 $request = request();
 ```
+
