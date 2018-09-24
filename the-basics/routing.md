@@ -29,11 +29,21 @@ Router::options('test/route', function () {});
 
 ## Route Parameters
 
-Parameters can be defined on routes using the `{keyName}` syntax. When a route matches that contains parameters, an instance of the `RouteParams` object is passed to the action.
+Parameters can be defined on routes using the `{keyName}` syntax. When a route that contains parameters is matched, those parameters are available as injectable parameters in your callback/controller. The name of the route parameter and the controller parameter must be the same.
 
 ```php
-Router::get('posts/{id}', function(RouteParams $params) {
-    return $params->id;
+Router::get('posts/{id}', function($id) {
+
+});
+```
+
+As the parameters are injected by name, it doesn't matter which order you have the parameters in your callback/controller:
+
+```php
+// posts/123/comments/1
+Router::get('posts/{postId}/comments/{commentId}', function($commentId, $postId) {
+    echo $commendId; // 1
+    echo $postId; // 123
 });
 ```
 
