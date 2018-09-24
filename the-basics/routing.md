@@ -31,6 +31,17 @@ Router::get('posts/{id}', function(RouteParams $params) {
 });
 ```
 
+### Parameter Constraints
+
+By default, all parameters will match against all non all non `/` characters. You can make the match more specific by supplying a regular expression:
+
+```php
+Router::get('posts/{id}', function () {})->where('id', '[0-9]+');
+
+// Will match /posts/123
+// Won't match /posts/abc
+```
+
 ## Named Routes
 
 Routes can be named so that their URL can be generated programatically:
