@@ -222,6 +222,26 @@ class MyViewModel extends ViewModel
 }
 ```
 
+### Binding of the Exception Handler
+
+{% hint style="warning" %}
+**Likelihood Of Impact: Very low**
+{% endhint %}
+
+In `bootstrap/app.php` you should change how the exception handler is bound to `Rareloop\Lumberjack\Exceptions\HandlerInterface`.
+
+From:
+
+```php
+$app->bind(HandlerInterface::class, $app->make(Handler::class));
+```
+
+To:
+
+```php
+$app->singleton(HandlerInterface::class, Handler::class);
+```
+
 ### `Helpers::app()` helper
 
 {% hint style="warning" %}
