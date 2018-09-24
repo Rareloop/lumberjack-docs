@@ -8,11 +8,11 @@ This release of Lumberjack is jam packed full of goodies. We have also added a w
 
 The first important thing to mention is that the minimum version of PHP has been bumped up to `7.1`. So make sure your server can handle this version.
 
-### Container
+### Standardising the Container
 
-Lumberjack uses a dependency injection container under the hood, which allows you to decouple your class dependencies by having the container inject dependencies when needed.
+Lumberjack uses a [dependency injection container](container/using-the-container.md) under the hood, which allows you to decouple your class dependencies by having the container inject dependencies when needed.
 
-In v3, it wasn't clear when you were resolving a singleton or a new instance of a class from the container. It could have lead to some unusual & unexpected issues, so we decided to make things much clearer with v4.
+In v3, it wasn't clear when you were resolving a singleton or a new instance of a class from the container. It could have lead to some unusual & unexpected issues, so we decided to make things much clearer with v4 and standardise the behaviour.
 
 Now, when you bind a class name into the container like so:
 
@@ -94,10 +94,40 @@ $foo2 = $app->get('foo');
 $foo2->bar; // true
 ```
 
+{% hint style="info" %}
+It is important to note that if you bind **an object instance** to the container, you will always get that instance back. For example:
+
+```php
+$app->bind('foo', new Foo);
+
+$foo1 = $app->get('foo');
+$foo1->bar = true;
+
+$foo2 = $app->get('foo');
+
+// Both variables reference the same object
+$foo1 === $foo2; // true
+
+$foo2->bar; // true
+```
+{% endhint %}
+
+[Head over to the "Using the Container" docs](container/using-the-container.md) to learn more.
+
 ## Features
 
-* Sessions
-* Helpers
+#### New helper functions
+
+To make your development lives easier, there are now some additional helper functions available. These are:
+
+* `back()` - returns a `RedirectResponse` which automatically redirects back to the previous URL
+* `report ($exception)` - tells the Exception Handler to report an exception. Useful if your theme needs to swallow an exception, but you still want to log the fact that it happened
+* `request()` - returns the current `ServerRequest` object
+* `session()` - can be used to interact with the session in various ways
+
+[Check out the Helpers documentation](the-basics/helpers.md) for more details.
+
+#### Sessions
 
 ## Docs
 
