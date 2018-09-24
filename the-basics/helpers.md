@@ -28,11 +28,14 @@ Then, tell composer to regenerate its list of autoloaded files by running `compo
 
 ## Available Helpers
 
-* app
-* config
-* view
-* route
-* redirect
+* [app](helpers.md#app)
+* [config](helpers.md#config)
+* [view](helpers.md#view)
+* [route](helpers.md#route)
+* [redirect](helpers.md#redirect)
+* [request](helpers.md#request)
+* [back](helpers.md#back)
+* [report](helpers.md#report)
 
 ### app
 
@@ -118,7 +121,7 @@ $url = redirect('/auth/login', 200, $headers);
 
 ### session
 
-You can use the `session` helper to retrieve and store data in the current session. Passing in 1 \(string\) arguement will get the value of that item from the session. Passing in an array of key/value pairs will add each pair to the session.
+You can use the `session` helper to retrieve and store data in the current session. Passing in 1 \(string\) argument will get the value of that item from the session. Passing in an array of key/value pairs will add each pair to the session.
 
 ```php
 // Get a value from the session
@@ -132,10 +135,11 @@ $name = \Rareloop\Lumberjack\Helpers::session('name', 'default');
 
 // Call any method on a session
 \Rareloop\Lumberjack\Helpers::session()->forget('key');
+```
 
-// And using the Global function instead:
+And using the global function instead:
 
-
+```php
 // Get a value from the session
 $name = session('name');
 
@@ -159,4 +163,71 @@ $request = \Rareloop\Lumberjack\Helpers::request();
 // Global function
 $request = request();
 ```
+
+#### back
+
+Returns a RedirectResponse, which will redirect the user to the previous URL.
+
+```php
+return \Rareloop\Lumberjack\Helpers::back();
+
+// Global function
+return back();
+```
+
+If you need to pass any data back to the previous page, you can flash items to the session using `with()`:
+
+```php
+// Chain 'with' multiple times
+return \Rareloop\Lumberjack\Helpers::back()
+    ->with('key', 'value')
+    ->with('foo', 'bar');
+
+// Or use an array with key/value pairs
+return \Rareloop\Lumberjack\Helpers::back()->with([
+    'key' => 'value,
+    'foo' => 'bar',
+]);
+
+// Global function
+return back()
+    ->with('key', 'value')
+    ->with('foo', 'bar');
+    
+// Or use an array with key/value pairs
+return back()->with([
+    'key' => 'value,
+    'foo' => 'bar',
+]);
+```
+
+### report
+
+Calls the `report` method on the Exception Handler, to ensure that an exception is reported.
+
+```php
+\Rareloop\Lumberjack\Helpers::report($exception);
+
+// Global function
+report($exception);
+```
+
+This is particularly useful if your theme needs to _swallow_ any exceptions so they do not break the site, but you still wish to have the error logged. For example:
+
+```php
+try {
+    // This may throw an exception...
+    $comment = Comment::add($data);
+    
+    return JsonResponse($comment, 200);
+} catch (Exception $exception) {
+    // Report the exception
+    report($exception);
+    
+    // Swallow the exception, and instead return a response
+    return JsonResponse([], 400);
+}
+```
+
+"Swallowing" here simply means that the exception is unable to bubble all the way up to the Exception Handler where it normally gets reported.
 

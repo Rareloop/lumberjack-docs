@@ -120,8 +120,9 @@ $foo2->bar; // true
 
 To make your development lives easier, there are now some additional helper functions available. These are:
 
+* `redirect()` - returns a `RedirectResponse`
 * `back()` - returns a `RedirectResponse` which automatically redirects back to the previous URL
-* `report ($exception)` - tells the Exception Handler to report an exception. Useful if your theme needs to swallow an exception, but you still want to log the fact that it happened
+* `report($exception)` - tells the Exception Handler to report an exception. Useful if your theme needs to swallow an exception, but you still want to log the fact that it happened
 * `request()` - returns the current `ServerRequest` object
 * `session()` - can be used to interact with the session in various ways
 
@@ -129,11 +130,37 @@ To make your development lives easier, there are now some additional helper func
 
 #### Sessions
 
+This is one of the bigger features added to v4. You can now manage sessions in a concise, expressive and headache-free way.
+
+Let's dive straight into what sessions look like in Lumberjack. We'll be using the [global helper function](the-basics/helpers.md#session) `session()` for these examples; [_make sure you have enabled them_ ](the-basics/helpers.md#adding-global-helpers)_if you want to use it too._
+
+```php
+// Get a value, with a default value
+$value = session('key', 'default');
+
+// Get all values
+$values = session()->all();
+
+// Store a value
+session()->put('key', 'value');
+
+// Check if the session has a value
+session()->has('key');
+
+// Flash a value for 1 request
+session()->flash('key', 'value');
+
+// Remove a value
+session()->forget('key');
+```
+
+Be sure to [read the Sessions documentation](the-basics/session.md) for a more in-depth look.
+
 ## Docs
 
-* Helpers
 * HTTP Requests
 * View Models
+* Upgrade Guide
 
 
 
