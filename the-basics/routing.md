@@ -75,7 +75,7 @@ Router::group('prefix', function ($group) {
 
 If you'd rather use a class to group related route actions together you can pass a Controller String instead of a closure.
 
-The string takes the format `{name of class}@{name of method}`. It is important that you use the complete namespace with the class name.
+The string takes the format `{name of class}@{name of method}`. The Router will be default look for classes in the `App\Controllers` namespace, so you don't need to include this prefix in the Controller String.
 
 ```php
 // app/Http/Controllers/TestController.php
@@ -90,7 +90,25 @@ class TestController
 }
 
 // routes.php
-Router::get('route/uri', '\App\Http\TestController@show');
+Router::get('route/uri', 'TestController@show');
+```
+
+If you want to reference a Controller in another namespace you'll need to append the complete namespace to the classname:
+
+```php
+// My/Namespace/TestController.php
+namespace My\Namespace;
+
+class TestController
+{
+    public function show()
+    {
+        return 'Hello World';
+    }
+}
+
+// routes.php
+Router::get('route/uri', '\My\Namespace\TestController@show');
 ```
 
 ### **Map**
