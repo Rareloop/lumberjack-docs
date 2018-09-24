@@ -37,6 +37,8 @@ Add the following providers to `config/app.php`:
 ],
 ```
 
+The query builder is now part of the core, rather than an external package. If you were using the package, you will need to remove its service provider from your list of `providers` above.
+
 ### Exception Handler
 
 {% hint style="warning" %}
