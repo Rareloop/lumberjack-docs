@@ -4,6 +4,14 @@
 
 We aim to document all the changes that could impact your theme, and there may only be a portion that are applicable to your theme.
 
+### Composer
+
+Update `lumberjack-core` to version 4.
+
+```javascript
+"rareloop/lumberjack-core": "^4.0"
+```
+
 ### PHP Version
 
 {% hint style="warning" %}
