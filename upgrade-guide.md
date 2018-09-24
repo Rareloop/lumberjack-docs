@@ -12,38 +12,6 @@ We aim to document all the changes that could impact your theme, and there may o
 
 Support for **PHP 7.0 has been dropped**, ensure you're running at least **PHP 7.1**.
 
-### Container
-
-{% hint style="warning" %}
-**Likelihood Of Impact: Medium**
-{% endhint %}
-
-The `bind()` method on the `Application` container is no longer a singleton by default when the value \(2nd param\) is not a primitive or object instance.
-
-When binding a concrete implementation to an interface, being a singleton created unexpected side affects.
-
-A new `singleton()` method has been provided to enable the previous behaviour. This enables the app developer to be more intentional about the behaviour they desire.
-
-For example:
-
-```php
-// Singleton
-$app->singleton(App\AppInterface::class, App\AppImplementation::class);
-$object1 = $app->get(App\AppInterface::class);
-$object2 = $app->get(App\AppInterface::class);
-
-// The same object is resolved from the container
-$object1 === $object2; // true
-
-// Bind
-$app->bind(App\AppInterface::class, App\AppImplementation::class);
-$object1 = $app->get(App\AppInterface::class);
-$object2 = $app->get(App\AppInterface::class);
-
-// The container resolves new instances, so the objects are not the same
-$object1 === $object2; // false
-```
-
 ### Service Providers
 
 {% hint style="warning" %}
@@ -60,16 +28,6 @@ Add the following providers to `config/app.php`:
     Rareloop\Lumberjack\Providers\EncryptionServiceProvider::class,
 ],
 ```
-
-### PSR-15 Middleware
-
-{% hint style="warning" %}
-**Likelihood Of Impact: Very low**
-{% endhint %}
-
-The `http-interop/http-server-middleware` package has been deprecated in favour of the now official PSR-15 interfaces found in `psr/http-server-middleware`.
-
-Make sure any middleware used now complies with the `Psr\Http\Server\MiddlewareInterface` interface.
 
 ### Exception Handler
 
@@ -107,46 +65,36 @@ public function render(ServerRequestInterface $request, Exception $e) : Response
 
 No changes should be required to your application logic as Zend subclasses will already comply with the new interface.
 
-### `Helpers::app()` helper
+### Container
 
 {% hint style="warning" %}
-**Likelihood Of Impact: Very low**
+**Likelihood Of Impact: Medium**
 {% endhint %}
 
-`Helpers::app()` \(and the `app()` global counterpart\) no longer use the `make()` method of the Application instance and now rely on `get()`. This provides much more consistent behaviour with other uses of the Container. If you still want to use the helpers to get `make()` behaviour you can change your code.
+The `bind()` method on the `Application` container is no longer a singleton by default when the value \(2nd param\) is not a primitive or object instance.
 
-From:
+When binding a concrete implementation to an interface, being a singleton created unexpected side affects.
 
-```php
-Helpers::app(MyClassName::class);
-```
+A new `singleton()` method has been provided to enable the previous behaviour. This enables the app developer to be more intentional about the behaviour they desire.
 
-To:
+For example:
 
 ```php
-Helpers::app()->make(MyClassName::class);
-```
+// Singleton
+$app->singleton(App\AppInterface::class, App\AppImplementation::class);
+$object1 = $app->get(App\AppInterface::class);
+$object2 = $app->get(App\AppInterface::class);
 
-### `Router` class namespace
+// The same object is resolved from the container
+$object1 === $object2; // true
 
-{% hint style="warning" %}
-**Likelihood Of Impact: Very low**
-{% endhint %}
+// Bind
+$app->bind(App\AppInterface::class, App\AppImplementation::class);
+$object1 = $app->get(App\AppInterface::class);
+$object2 = $app->get(App\AppInterface::class);
 
-If you resolve an instance of the `Router` class from the container, you'll need to change the class reference.
-
-If you're just using the Router Facade, you do not need to change anything.
-
-From:
-
-```text
-use Rareloop\Router\Router
-```
-
-To:
-
-```text
-Rareloop\Lumberjack\Http\Router
+// The container resolves new instances, so the objects are not the same
+$object1 === $object2; // false
 ```
 
 ### `ServerRequest` class \(optional\)
@@ -273,4 +221,56 @@ class MyViewModel extends ViewModel
     }
 }
 ```
+
+### `Helpers::app()` helper
+
+{% hint style="warning" %}
+**Likelihood Of Impact: Very low**
+{% endhint %}
+
+`Helpers::app()` \(and the `app()` global counterpart\) no longer use the `make()` method of the Application instance and now rely on `get()`. This provides much more consistent behaviour with other uses of the Container. If you still want to use the helpers to get `make()` behaviour you can change your code.
+
+From:
+
+```php
+Helpers::app(MyClassName::class);
+```
+
+To:
+
+```php
+Helpers::app()->make(MyClassName::class);
+```
+
+### `Router` class namespace
+
+{% hint style="warning" %}
+**Likelihood Of Impact: Very low**
+{% endhint %}
+
+If you resolve an instance of the `Router` class from the container, you'll need to change the class reference.
+
+**If you're just using the Router Facade, you do not need to change anything.**
+
+From:
+
+```text
+use Rareloop\Router\Router
+```
+
+To:
+
+```text
+Rareloop\Lumberjack\Http\Router
+```
+
+### PSR-15 Middleware
+
+{% hint style="warning" %}
+**Likelihood Of Impact: Very low**
+{% endhint %}
+
+The `http-interop/http-server-middleware` package has been deprecated in favour of the now official PSR-15 interfaces found in `psr/http-server-middleware`.
+
+Make sure any middleware used now complies with the `Psr\Http\Server\MiddlewareInterface` interface.
 
