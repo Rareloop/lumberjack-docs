@@ -40,7 +40,7 @@ Router::get('posts/{id}', function($id) {
 As the parameters are injected by name, it doesn't matter which order you have the parameters in your callback/controller:
 
 ```php
-// posts/123/comments/1
+// /posts/123/comments/1
 Router::get('posts/{postId}/comments/{commentId}', function($commentId, $postId) {
     echo $commendId; // 1
     echo $postId; // 123
@@ -80,7 +80,7 @@ Router::group('prefix', function ($group) {
 
 If you'd rather use a class to group related route actions together you can pass a Controller String instead of a closure.
 
-The string takes the format `{name of class}@{name of method}`. It is important that you use the complete namespace with the class name.
+The string takes the format `{name of class}@{name of method}`. Lumberjack will automatically look for controllers in the `App\Http\Controllers` namespace.
 
 ```php
 // app/Http/Controllers/TestController.php
@@ -95,7 +95,13 @@ class TestController
 }
 
 // routes.php
-Router::get('route/uri', '\App\Http\TestController@show');
+Router::get('route/uri', 'TestController@show');
+```
+
+You can reference any controller by providing the fully qualified class name:
+
+```php
+Router::get('route/uri', '\Foo\Bar\MyPackageController@show');
 ```
 
 ### **Map**
