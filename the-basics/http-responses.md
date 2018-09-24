@@ -85,3 +85,48 @@ return (new JsonResponse($data, 422))
     ->withStatus(422)
     ->withHeader('X-Total-Validation-Errors', 2);
 ```
+
+## Responsable Objects
+
+In addition to supporting PSR7 compliant responses, Controllers can also return an object that implements the `Rareloop\Router\Responsable` interface. These objects provide a `toResponse()` method that will return an instance of a PSR7 Response.
+
+```php
+// app/Http/Controllers/TestController.php
+namespace App\Http\Controllers;
+
+use App\Exceptions\TestException;
+
+class TestController
+{
+    public function show()
+    {
+        return new TestException('Hello World');
+    }
+}
+
+// app/Exceptions/TestException.php
+namespace App\Exceptions;
+
+use Rareloop\Router\Responsable;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Zend\Diactoros\Response\JsonResponse;
+
+class TestException extends \Exception implements Responsable
+{
+    protected $reason;
+
+    public function __construct($reason)
+    {
+        $this->reason = $reason;
+        parent::__construct();
+    }
+
+    public function toResponse(RequestInterface $request) : ResponseInterface
+    {
+        return new JsonResponse([
+            'error' => $this->reason,
+        ], 400);
+    }
+}
+```
