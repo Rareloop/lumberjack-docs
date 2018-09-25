@@ -221,11 +221,18 @@ $name = $request->input('name', 'default');
 $request->has('name');
 ```
 
-## Docs
+You can [read the HTTP Requests documentation](the-basics/http-requests.md) for more information.
 
-* HTTP Requests
-* View Models
-* Upgrade Guide
+## Documentation
+
+We have also added/revisited some of the documentation. We recommend checking these out:
+
+* [Upgrade Guide](upgrade-guide.md) - How to upgrade to v4 from v3
+* [HTTP Requests](the-basics/http-requests.md) - New feature!
+* [Sessions](the-basics/session.md) - New feature!
+* [View Models](the-basics/view-models.md) - Added docs around existing feature
+* [Using the Container](container/using-the-container.md) - Revisited docs after the changes to the container's behaviour
+* [Helpers](the-basics/helpers.md) - Added more helpers
 
 
 
