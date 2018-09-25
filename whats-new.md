@@ -14,7 +14,7 @@ Lumberjack uses a [dependency injection container](container/using-the-container
 
 In v3, it wasn't clear when you were resolving a singleton or a new instance of a class from the container. It could have lead to some unusual & unexpected issues, so we decided to make things much clearer with v4 and standardise the behaviour.
 
-Now, when you bind a class name into the container like so:
+Now, when you bind a **class name** into the container like so:
 
 ```php
 $app->bind('foo', Foo::class);
