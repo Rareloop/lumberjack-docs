@@ -16,12 +16,23 @@ class MyController
 }
 ```
 
+You can also use the `request()` helper to access the request from anywhere in your theme: 
+
+```php
+use Rareloop\Lumberjack\Helpers;
+​
+$request = Helpers::request();
+​
+// Or if you have global helpers enabled:
+$request = request();
+```
+
 ## Usage
 
 ### Get the path
 
 ```php
-$request->path();
+$request->path(); // e.g. /path
 ```
 
 ### Get the URL
