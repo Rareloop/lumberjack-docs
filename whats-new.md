@@ -116,7 +116,7 @@ $foo2->bar; // true
 
 ## Features
 
-#### New helper functions
+### New helper functions
 
 To make your development lives easier, there are now some additional helper functions available. These are:
 
@@ -128,7 +128,7 @@ To make your development lives easier, there are now some additional helper func
 
 [Check out the Helpers documentation](the-basics/helpers.md) for more details.
 
-#### Sessions
+### Sessions
 
 This is one of the bigger features added to v4. You can now manage sessions in a concise, expressive and headache-free way.
 
@@ -155,6 +155,71 @@ session()->forget('key');
 ```
 
 Be sure to [read the Sessions documentation](the-basics/session.md) for a more in-depth look.
+
+### Interacting with the request
+
+In v3, you could access the request by dependency injecting `Zend\Diactoros\ServerRequest`, like so:
+
+```php
+use Zend\Diactoros\ServerRequest;
+
+class ExampleController
+{
+    public function handle(ServerRequest $request)
+    {
+     
+    } 
+}
+```
+
+Lumberjack now has its own `ServerRequest` class, making it much easier to work with the request. You can access it like so:
+
+```php
+use Rareloop\Lumberjack\Http\ServerRequest;
+
+class ExampleController
+{
+    public function handle(ServerRequest $request)
+    {
+     
+    } 
+}
+```
+
+You can also use the `request()` helper to access the request from anywhere in your theme:
+
+```php
+use Rareloop\Lumberjack\Helpers;
+
+$request = Helpers::request();
+
+// Or if you have global helpers enabled:
+$request = request();
+```
+
+#### Overview of some available methods
+
+```php
+// Get the current path
+$request->path(); // e.g. /path
+
+// Get the current URL
+$request->url(); // e.g. http://test.com/path
+
+// Get the current URL, with query parameters etc
+$request->fullUrl(); // e.g. http://test.com/path?name=adam
+
+// Get query params
+$request->query();
+$name = $request->query('name', 'default');
+
+// Get all input (from $_GET and $_POST)
+$input = $request->input();
+$name = $request->input('name', 'default');
+
+// Check the request has a specific key
+$request->has('name');
+```
 
 ## Docs
 
