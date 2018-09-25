@@ -22,6 +22,7 @@
 * [View Models](the-basics/view-models.md)
 * [Logging](the-basics/logging.md)
 * [Error Handling](the-basics/error-handling.md)
+* [Query Builder](the-basics/query-builder.md)
 
 ## Container
 

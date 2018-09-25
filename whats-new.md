@@ -112,7 +112,9 @@ $foo2->bar; // true
 ```
 {% endhint %}
 
-[Head over to the "Using the Container" docs](container/using-the-container.md) to learn more.
+Head over to the "Using the Container" docs to learn more:
+
+{% page-ref page="container/using-the-container.md" %}
 
 ## Features
 
@@ -126,7 +128,9 @@ To make your development lives easier, there are now some additional helper func
 * `request()` - returns the current `ServerRequest` object
 * `session()` - can be used to interact with the session in various ways
 
-[Check out the Helpers documentation](the-basics/helpers.md) for more details.
+Check out the Helpers documentation for more details:
+
+{% page-ref page="the-basics/helpers.md" %}
 
 ### Sessions
 
@@ -154,7 +158,9 @@ session()->flash('key', 'value');
 session()->forget('key');
 ```
 
-Be sure to [read the Sessions documentation](the-basics/session.md) for a more in-depth look.
+Be sure to read the Sessions documentation for a more in-depth look:
+
+{% page-ref page="the-basics/session.md" %}
 
 ### Interacting with the request
 
@@ -221,7 +227,9 @@ $name = $request->input('name', 'default');
 $request->has('name');
 ```
 
-You can [read the HTTP Requests documentation](the-basics/http-requests.md) for more information.
+You can read the HTTP Requests documentation for more information:
+
+{% page-ref page="the-basics/http-requests.md" %}
 
 ## Documentation
 
@@ -233,6 +241,4 @@ We have also added/revisited some of the documentation. We recommend checking th
 * [View Models](the-basics/view-models.md) - Added docs around existing feature
 * [Using the Container](container/using-the-container.md) - Revisited docs after the changes to the container's behaviour
 * [Helpers](the-basics/helpers.md) - Added more helpers
-
-
 
