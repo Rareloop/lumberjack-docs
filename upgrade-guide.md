@@ -83,7 +83,7 @@ No changes should be required to your application logic as Zend subclasses will 
 
 The `bind()` method on the `Application` container is no longer a singleton by default when the value \(2nd param\) is not a primitive or object instance.
 
-When binding a concrete implementation to an interface, being a singleton created unexpected side affects.
+When [binding a concrete implementation to an interface](container/using-the-container.md#set-concrete-implementations-for-interfaces), using singletons by default can create unexpected side affects as state is maintained across instances.
 
 A new `singleton()` method has been provided to enable the previous behaviour. This enables the app developer to be more intentional about the behaviour they desire.
 
