@@ -75,6 +75,8 @@ public function render(ServerRequestInterface $request, Exception $e) : Response
 
 No changes should be required to your application logic as Zend subclasses will already comply with the new interface.
 
+{% page-ref page="the-basics/error-handling.md" %}
+
 ### Container
 
 {% hint style="warning" %}
@@ -106,6 +108,8 @@ $object2 = $app->get(App\AppInterface::class);
 // The container resolves new instances, so the objects are not the same
 $object1 === $object2; // false
 ```
+
+{% page-ref page="container/using-the-container.md" %}
 
 ### `ServerRequest` class \(optional\)
 
@@ -177,6 +181,8 @@ $request->input('name', 'Jane');
 // Check if the request has a key
 $request->has('name');
 ```
+
+{% page-ref page="the-basics/http-requests.md" %}
 
 ### View Models
 
