@@ -31,7 +31,6 @@
 
 ## Misc
 
-* [Changelog](misc/changelog.md)
 * [Contributing](misc/contributing.md)
 * [Notable Mentions](misc/notable-mentions.md)
 * [Code of Conduct](misc/code-of-conduct.md)
