@@ -23,6 +23,7 @@
 * [Helpers](the-basics/helpers.md)
 * [Logging](the-basics/logging.md)
 * [Error Handling](the-basics/error-handling.md)
+* [Collections](the-basics/collections.md)
 
 ## Container
 

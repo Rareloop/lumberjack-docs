@@ -16,7 +16,7 @@ class MyController
 }
 ```
 
-You can also use the `request()` helper to access the request from anywhere in your theme: 
+You can also use the `request()` helper to access the request from anywhere in your theme:
 
 ```php
 use Rareloop\Lumberjack\Helpers;
