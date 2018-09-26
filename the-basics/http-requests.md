@@ -29,6 +29,13 @@ $request = request();
 
 ## Usage
 
+### Get the method
+
+```php
+$request->getMethod(); // e.g. GET
+$request->isMethod('GET'); // e.g. true
+```
+
 ### Get the path
 
 ```php
