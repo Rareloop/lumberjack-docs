@@ -17,40 +17,40 @@ In v3, it wasn't clear when you were resolving a singleton or a new instance of 
 Now, when you bind a **class name** into the container like so:
 
 ```php
-$app->bind('foo', Foo::class);
+$app->bind('key', MyClass::class);
 
-// Or use a fully qualified class name
-$app->bind(FooInterface::class, Foo::class);
+// Or bind a concrete class to an interface
+$app->bind(MyInterface::class, MyClass::class);
 ```
 
 The container will **always resolve a new instance**. What does that mean? In short, it means state is not  kept between resolves, you will always get a new instance of the class. Here's a couple of examples to illustrate the point:
 
 ```php
 // Bind a class to the container
-$app->bind('foo', Foo::class);
+$app->bind('key', MyClass::class);
 
-$foo1 = $app->get('foo');
-$foo2 = $app->get('foo');
+$value1 = $app->get('key');
+$value2 = $app->get('key');
 
-$foo1 === $foo2; // false
+$value1 === $value2; // false
 ```
 
-Here we are resolving `foo` from the container twice. Each time it is resolved, the container will create a new instance of the `Foo` class. If we were to modify `$foo1` in any way, that change would not persist in `$foo2`. For example:
+Here we are resolving `key` from the container twice. Each time it is resolved, the container will create a new instance of the `MyClass` class. If we were to modify `$value1` in any way, that change **would not** persist in `$value2`. For example:
 
 ```php
 // Bind a class to the container
-$app->bind('foo', Foo::class);
+$app->bind('key', MyClass::class);
 
-$foo1 = $app->get('foo');
+$value1 = $app->get('key');
 
-// Modify $foo1
-$foo1->bar = true;
+// Modify $key1
+$value1->name = 'Adam';
 
-// Get 'foo' from the container again
-$foo2 = $app->get('foo');
+// Get 'key' from the container again
+$value2 = $app->get('key');
 
-// Throws an exception as bar is not defined on $foo2
-$foo2->bar;
+// Throws an exception as name is not defined on $value2
+$value2->name;
 ```
 
 For the majority of the time, we feel like this is the better option. It means you are not accidentally coupling your application to the state of something in the container.
@@ -58,57 +58,57 @@ For the majority of the time, we feel like this is the better option. It means y
 However, sometimes you do want that behaviour. When you do, you can simply use the `singleton` method to tell the container to resolve the same instance if there is one.
 
 ```php
-$app->singleton('foo', Foo::class);
+$app->singleton('key', MyClass::class);
 
-// Or use a fully qualified class name
-$app->singleton(FooInterface::class, Foo::class);
+// Or bind a concrete class to an interface
+$app->singleton(MyInterface::class, MyClass::class);
 ```
 
 Now, when the container resolves the instance it will use the one that is already bound to the container. For example:
 
 ```php
 // Bind a singleton to the container
-$app->singleton('foo', Foo::class);
+$app->singleton('key', MyClass::class);
 
-$foo1 = $app->get('foo');
-$foo2 = $app->get('foo');
+$value1 = $app->get('key');
+$value2 = $app->get('key');
 
-$foo1 === $foo2; // true
+$value1 === $value2; // true
 ```
 
 And when we modify the instance, its state will persist:
 
 ```php
 // Bind a class to the container
-$app->singleton('foo', Foo::class);
+$app->singleton('key', MyClass::class);
 ​
-$foo1 = $app->get('foo');
+$value1 = $app->get('key');
 ​
-// Modify $foo1
-$foo1->bar = true;
+// Modify $value1
+$value1->name = 'Adam';
 ​
-// Get 'foo' from the container again
-$foo2 = $app->get('foo');
+// Get 'key' from the container again
+$value2 = $app->get('key');
 ​
-// 'bar' is available because $foo2 is the same object as $foo1
-$foo2->bar; // true
+// 'name' is available because $value2 is the same object as $value1
+$value2->name; // 'Adam'
 ```
 
 {% hint style="info" %}
 It is important to note that if you bind **an object instance** to the container, you will always get that instance back. For example:
 
 ```php
-$app->bind('foo', new Foo);
+$app->bind('key', new MyClass);
 
-$foo1 = $app->get('foo');
-$foo1->bar = true;
+$value1 = $app->get('key');
+$value1->name = 'Adam';
 
-$foo2 = $app->get('foo');
+$value2 = $app->get('key');
 
 // Both variables reference the same object
-$foo1 === $foo2; // true
+$value1 === $value2; // true
 
-$foo2->bar; // true
+$value2->name; // 'Adam'
 ```
 {% endhint %}
 

@@ -13,14 +13,14 @@ There are many ways in which you can interact with the container. Primarily it's
 **The following examples will be using the `app()` global helper. If you do not have it enabled, you can use the `Helpers` class. For example:**
 
 ```php
-app()->bind('foo', 'bar');
+app()->bind('key', 'value');
 ```
 
 Would become:
 
 ```php
 use Rareloop\Lumberjack\Helpers;
-Helpers::app()->bind('foo', 'bar');
+Helpers::app()->bind('key', 'value');
 ```
 
 ## Accessing the container
@@ -56,7 +56,7 @@ class PaymentGatewayServiceProvider extends ServiceProvider
 ```
 
 {% hint style="warning" %}
-You should only ever bind to the container within a service provider's `boot` method.
+You should only ever bind to the container within a service provider's `register()` method.
 {% endhint %}
 
 #### Everywhere else
@@ -70,15 +70,15 @@ $app = Helpers::app();
 
 [Check out the "Helpers" documentation](../the-basics/helpers.md#app) for more information on using this helper.
 
-## Retrieving entries from the container
+## Resolving entries from the container
 
-To retrieve an entry from the container you can use `get()`.
+To resolve an entry from the container you can use `get()`.
 
 ```php
-$foo = app()->get('foo');
+$value = app()->get('key');
 
 // Or, using the helper's convenient shorthand
-$foo = app('foo');
+$value = app('key');
 ```
 
 You can use the container to create an object from any class that your application can autoload using `get()`, for example: 
@@ -141,10 +141,10 @@ $comment = app()->make(Comment::class, [
 
 ## Setting entries in the container
 
-To add something to the container you simply call `bind()`. In this example, the value `bar` is bound to the container under the key `foo`.
+To add something to the container you simply call `bind()`. In this example, `value` is bound to the container under `key`.
 
 ```php
-app()->bind('foo', 'bar');
+app()->bind('key', 'value');
 ```
 
 You can bind pretty much anything you like to the container. Let's take a look at some other examples. Understanding the difference in behaviour is vital in using the container effectively.
@@ -301,7 +301,7 @@ interface PaymentGateway
 }
 ```
 
-Any implementation of this contract has to have a `charge` method that accepts an `$amount`. Lets add a Strip implementation of the interface:
+Any implementation of this contract has to have a `charge` method that accepts an `$amount`. Lets add a Stripe implementation of the interface:
 
 ```php
 namespace App;
