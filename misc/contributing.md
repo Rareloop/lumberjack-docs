@@ -15,6 +15,11 @@ We accept contributions via Pull Requests on [Github](https://github.com/Rareloo
 ## Running Tests
 
 ```bash
-$ phpunit
+$ vendor/bin/phpunit
 ```
 
+## Linting against PSR2 Coding Standards
+
+```bash
+$ vendor/bin/phpcs --standard=PSR2 ./src
+```
