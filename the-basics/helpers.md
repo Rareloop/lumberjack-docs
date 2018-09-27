@@ -33,6 +33,7 @@ Then, tell composer to regenerate its list of autoloaded files by running `compo
 * [view](helpers.md#view)
 * [route](helpers.md#route)
 * [redirect](helpers.md#redirect)
+* [session](helpers.md#session)
 * [request](helpers.md#request)
 * [back](helpers.md#back)
 * [report](helpers.md#report)
@@ -164,7 +165,7 @@ $request = \Rareloop\Lumberjack\Helpers::request();
 $request = request();
 ```
 
-#### back
+### back
 
 Returns a RedirectResponse, which will redirect the user to the previous URL.
 
