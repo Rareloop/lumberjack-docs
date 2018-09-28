@@ -35,7 +35,7 @@ This will create a new folder `my-site` in the current working directory, instal
 
 To complete the install do the following:
 
-1. Copy `.env.example` to `.env` and update environment variables:
+1. Edit the `.env` file and update environment variables:
    * `DB_NAME` - Database name
    * `DB_USER` - Database user
    * `DB_PASSWORD` - Database password
