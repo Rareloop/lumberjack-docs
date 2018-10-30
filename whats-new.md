@@ -132,6 +132,12 @@ Check out the Helpers documentation for more details:
 
 {% page-ref page="the-basics/helpers.md" %}
 
+### Query Builder
+
+We've baked-in the [rareloop/lumberjack-querybuilder](https://github.com/Rareloop/lumberjack-querybuilder) package into the core. You now get an expressive, fluent and explicit way of querying data in WordPress out-of-the-box with Lumberjack. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class_Reference/WP_Query) to query posts \(of any type\) and means you do not have to worry about "the loop".
+
+{% page-ref page="the-basics/query-builder.md" %}
+
 ### Sessions
 
 This is one of the bigger features added to v4. You can now manage sessions in a concise, expressive and headache-free way.
