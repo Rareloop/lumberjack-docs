@@ -156,7 +156,7 @@ session()->forget('key');
 
 ### request
 
-The `request` helper returns the current `ServerRequest` object.
+The `request` helper returns the current `ServerRequest` object, which means you get access to [all  these available methods](http-requests.md#usage).
 
 ```php
 $request = \Rareloop\Lumberjack\Helpers::request();
@@ -164,6 +164,14 @@ $request = \Rareloop\Lumberjack\Helpers::request();
 // Global function
 $request = request();
 ```
+
+For example, to get the current url:
+
+```php
+$currentUrl = request()->url(); // e.g. http://test.com/path
+```
+
+{% page-ref page="http-requests.md" %}
 
 ### back
 
