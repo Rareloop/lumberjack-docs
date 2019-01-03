@@ -1,14 +1,20 @@
 # Routing
 
-The Lumberjack Router is based on the standalone [Rareloop Router](https://github.com/Rareloop/router) but utilises a Facade to make setup and access simpler.
+## Introduction
 
-Sometimes you want to create a page on your website but do not want it editable in WordPress. That's when this router comes into play. It can also be used to make AJAX endpoints.
+Sometimes you may want to create a page on your website but not need/want it editable in WordPress. That's when the custom Lumberjack router comes into play. It can also be used to make AJAX endpoints.
 
+{% hint style="warning" %}
 If you set up a custom route that has the same URL as a WordPress page, the router takes priority.
+{% endhint %}
 
-Note: Route closures and controller functions are automatically dependency injected from the container.
+{% hint style="info" %}
+Route closures and controller functions are automatically dependency injected from the container.
+{% endhint %}
 
 ## Creating Routes
+
+Routing is handled by using the `Rareloop\Lumberjack\Facades\Router` Facade. The convention is to create your Routes in the `routes.php` file at the base of your theme.
 
 Typically, you only need to allow one HTTP verb for a route \(e.g. `POST` or `GET`\). To create a route, use the HTTP verb as the method name. The first parameter is the URI and the second is the code you wish to execute when that route is matched.
 
@@ -23,7 +29,7 @@ Router::options('test/route', function () {});
 
 ## Route Parameters
 
-Parameters can be defined on routes using the {keyName} syntax. When a route that contains parameters is matched, those parameters are available as injectable parameters in your callback/controller. The name of the route parameter and the controller parameter must be the same.
+Parameters can be defined on routes using the `{keyName}` syntax. When a route that contains parameters is matched, those parameters are available as injectable parameters in your callback/controller. The name of the route parameter and the controller parameter must be the same.
 
 ```php
 Router::get('posts/{id}', function($id) {
@@ -39,6 +45,17 @@ Router::get('posts/{postId}/comments/{commentId}', function($commentId, $postId)
     echo $commendId; // 1
     echo $postId; // 123
 });
+```
+
+### Parameter Constraints
+
+By default, all parameters will match against all non `/` characters. You can make the match more specific by supplying a regular expression:
+
+```php
+Router::get('posts/{id}', function () {})->where('id', '[0-9]+');
+
+// Will match /posts/123
+// Won't match /posts/abc
 ```
 
 ## Named Routes
@@ -74,7 +91,7 @@ Router::group('prefix', function ($group) {
 
 If you'd rather use a class to group related route actions together you can pass a Controller String instead of a closure.
 
-The string takes the format `{name of class}@{name of method}`. It is important that you use the complete namespace with the class name.
+The string takes the format `{name of class}@{name of method}`. The Router will be default look for classes in the `App\Controllers` namespace, so you don't need to include this prefix in the Controller String.
 
 ```php
 // app/Http/Controllers/TestController.php
@@ -89,7 +106,25 @@ class TestController
 }
 
 // routes.php
-Router::get('route/uri', '\App\Http\TestController@show');
+Router::get('route/uri', 'TestController@show');
+```
+
+If you want to reference a Controller in another namespace you'll need to append the complete namespace to the classname:
+
+```php
+// My/Namespace/TestController.php
+namespace My\Namespace;
+
+class TestController
+{
+    public function show()
+    {
+        return 'Hello World';
+    }
+}
+
+// routes.php
+Router::get('route/uri', '\My\Namespace\TestController@show');
 ```
 
 ### **Map**

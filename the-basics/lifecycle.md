@@ -33,13 +33,17 @@ Service providers are fundamental to bootstrapping the rest of the framework and
 
 By having them defined in your theme, you can remove or modify any of the core behaviour. Do this with caution though. This also means you can add your own service providers too and power up Lumberjack in your own way!
 
-Lumberjack loops through this array twice. The first time it calls the `register()` method on all of the service providers. Then after they are all register it calls the `boot()` method on each one. You can **read more about service providers here** \*Todo\*.
+Lumberjack loops through this array twice. The first time it calls the `register()` method on all of the service providers. Then after they are all register it calls the `boot()` method on each one. You can read more about service providers here:
+
+{% page-ref page="../container/service-providers.md" %}
 
 ## Processing The Request
 
 The first service provider that runs is quite a fundamental one. The `RouterServiceProvider` has 2 important roles, which both trigger when WordPress had finished instantiating all plugins and the theme \(during the [`wp_loaded` action](https://codex.wordpress.org/Plugin_API/Action_Reference/wp_loaded)\).
 
-First, it transforms the HTTP request into a PSR7 compliant `ServerRequest` object. **Read more about what that means here** \*Todo\*
+First, it transforms the HTTP request into a PSR7 compliant `ServerRequest` object. Read more about what that means here:
+
+{% page-ref page="http-requests.md" %}
 
 Next, it checks to see if any custom routes \(from your theme's `routes.php` file\) match the current URL. If it find a match, the request is handled and a response is returned. Otherwise the request carries on and gets handled by WordPress normally later.
 
