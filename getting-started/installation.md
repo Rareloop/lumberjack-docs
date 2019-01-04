@@ -45,7 +45,7 @@ To complete the install do the following:
    * `WP_SITEURL` - Full URL to WordPress including subdirectory \(e.g. [http://example.com/wp](http://example.com/wp)\)
    * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` - Generate with [wp-cli-dotenv-command](https://github.com/aaemnnosttv/wp-cli-dotenv-command) or from the [Roots WordPress Salt Generator](https://cdn.roots.io/salts.html)
 2. Set your site vhost document root to `/path/to/my-site/web/`
-3. Access WP admin at `http://example.com/wp/wp-admin` and activate the Lumberjack theme.
+3. Access WP admin at `http://example.com/admin` and activate the Lumberjack theme.
 
 ### Additional Options
 

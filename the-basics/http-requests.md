@@ -4,7 +4,7 @@
 
 To access the current Request object you can inject it into your Controller by using the `Rareloop\Lumberjack\Http\ServerRequest` type hint, e.g.
 
-```text
+```php
 use Rareloop\Lumberjack\Http\ServerRequest;
 
 class MyController
@@ -16,7 +16,7 @@ class MyController
 }
 ```
 
-You can also use the `request()` helper to access the request from anywhere in your theme:
+You can also use the `request()` [helper](helpers.md#adding-global-helpers) to access the request from anywhere in your theme:
 
 ```php
 use Rareloop\Lumberjack\Helpers;
