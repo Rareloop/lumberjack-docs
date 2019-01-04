@@ -73,6 +73,8 @@ public function render(ServerRequestInterface $request, Exception $e) : Response
 
 No changes should be required to your application logic as Zend subclasses will already comply with the new interface.
 
+{% page-ref page="the-basics/error-handling.md" %}
+
 ### Container
 
 {% hint style="warning" %}
@@ -191,6 +193,8 @@ This is a previously undocumented feature. If you are using ViewModels, this is 
 View Models are simple classes that allow you to transform data that would otherwise be defined in your controller. This allows for better encapsulation of code and allows your code to be re-used across your controllers \(and even across themes\).
 
 Head over to the new View Model documentation to learn more:
+
+{% page-ref page="the-basics/view-models.md" %}
 
 #### Upgrading existing ViewModels
 

@@ -18,8 +18,12 @@
 * [Query Builder](the-basics/query-builder.md)
 * [HTTP Requests](the-basics/http-requests.md)
 * [HTTP Responses](the-basics/http-responses.md)
+* [View Models](the-basics/view-models.md)
 * [Sessions](the-basics/session.md)
 * [Helpers](the-basics/helpers.md)
+* [Logging](the-basics/logging.md)
+* [Error Handling](the-basics/error-handling.md)
+* [Collections](the-basics/collections.md)
 
 ## Container
 
