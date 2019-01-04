@@ -190,8 +190,6 @@ This is a previously undocumented feature. If you are using ViewModels, this is 
 
 View Models are simple classes that allow you to transform data that would otherwise be defined in your controller. This allows for better encapsulation of code and allows your code to be re-used across your controllers \(and even across themes\).
 
-Head over to the new View Model documentation to learn more:
-
 #### Upgrading existing ViewModels
 
 The `ViewModel` base class no longer extends from `stdClass` and so can no longer have arbitrary properties set on it.
