@@ -23,7 +23,7 @@ $app->bind('key', MyClass::class);
 $app->bind(MyInterface::class, MyClass::class);
 ```
 
-The container will **always resolve a new instance**. What does that mean? In short, it means state is not  kept between resolves, you will always get a new instance of the class. Here's a couple of examples to illustrate the point:
+The container will **always resolve a new instance**. What does that mean? In short, it means state is not kept between resolves, you will always get a new instance of the class. Here's a couple of examples to illustrate the point:
 
 ```php
 // Bind a class to the container
@@ -179,7 +179,7 @@ class ExampleController
 {
     public function handle(ServerRequest $request)
     {
-     
+
     } 
 }
 ```
@@ -193,7 +193,7 @@ class ExampleController
 {
     public function handle(ServerRequest $request)
     {
-     
+
     } 
 }
 ```
@@ -244,7 +244,7 @@ We have also added/revisited some of the documentation. We recommend checking th
 * [Upgrade Guide](upgrade-guide.md) - How to upgrade to v4 from v3
 * [HTTP Requests](the-basics/http-requests.md) - New feature!
 * [Sessions](the-basics/session.md) - New feature!
-* [View Models]() - Added docs around existing feature
+* [View Models](whats-new.md) - Added docs around existing feature
 * [Using the Container](container/using-the-container.md) - Revisited docs after the changes to the container's behaviour
 * [Helpers](the-basics/helpers.md) - Added more helpers
 

@@ -52,7 +52,6 @@ Make the following change in `app/Exceptions/Handler.php`:
 From:
 
 ```php
-
 use Zend\Diactoros\ServerRequest;
 
 public function render(ServerRequest $request, Exception $e) : ResponseInterface
@@ -64,7 +63,6 @@ public function render(ServerRequest $request, Exception $e) : ResponseInterface
 To:
 
 ```php
-
 use Psr\Http\Message\ServerRequestInterface;
 
 public function render(ServerRequestInterface $request, Exception $e) : ResponseInterface
@@ -149,7 +147,7 @@ class MyController
 ```
 {% endhint %}
 
-Here's a quick overview of what the new `ServerRequest` object can do. _If you are using_ [_global helpers_](the-basics/helpers.md#request)_, you can replace `$request` with `request()` instead in the examples below:_
+Here's a quick overview of what the new `ServerRequest` object can do. _If you are using_ [_global helpers_](the-basics/helpers.md#request)_, you can replace_ `$request` _with_ `request()` _instead in the examples below:_
 
 #### **Query Parameters**
 
@@ -196,7 +194,7 @@ Head over to the new View Model documentation to learn more:
 
 #### Upgrading existing ViewModels
 
-The `ViewModel` base class no longer extends from `stdClass` and so can no longer have arbitrary properties set on it. 
+The `ViewModel` base class no longer extends from `stdClass` and so can no longer have arbitrary properties set on it.
 
 We'd suggest upgrading your existing ViewModels to either use public methods or public properties. If your project has a large number of ViewModel's, the simplest change is to specifically name all properties in the class.
 

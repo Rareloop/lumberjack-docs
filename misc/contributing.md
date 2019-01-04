@@ -23,3 +23,4 @@ $ vendor/bin/phpunit
 ```bash
 $ vendor/bin/phpcs --standard=PSR2 ./src
 ```
+

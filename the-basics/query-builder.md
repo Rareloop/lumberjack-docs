@@ -60,7 +60,7 @@ dump($employees);
 ```
 
 {% hint style="info" %}
-Be sure to [check out the section on Collections]() if you're unfamiliar with them
+Be sure to [check out the section on Collections](query-builder.md) if you're unfamiliar with them
 {% endhint %}
 
 The collection contains instances of the `Employee` class. This is extremely powerful as you now have access to all the behaviours that come with employees, as defined in your post type class. In this case, you may have a `photoUrl()` method on an `Employee` that knows \(encapsulates\) how to get the correct size image from the featured image:
@@ -69,7 +69,7 @@ The collection contains instances of the `Employee` class. This is extremely pow
 class Employee extends Post
 {
     ...
-        
+
     public function photoUrl() : string
     {
         $thumbnail = $this->thumbnail();
@@ -115,7 +115,7 @@ $posts = Post::whereIdIn($featuredPostIds)
     ->get();
 
 ...
-    
+
 // Get the latest 3 featured posts
 $featuredPostIds = [1, 2];
 
@@ -140,11 +140,11 @@ use Rareloop\Lumberjack\Post as LumberjackPost;
 class Post extends LumberjackPost
 {
     ...
-    
+
     public function scopeFeatured($query)
     {
         $featuredPostIds = [1, 2];
-        
+
         return $query->whereIdIn($featuredPostIds);    
     }
 }
@@ -159,7 +159,7 @@ $posts = Post::featured()
     ->get();
 
 ...
-    
+
 // Get the latest 3 featured posts
 $posts = Post::featured()
     ->orderBy('date', 'desc')
@@ -185,7 +185,7 @@ use Rareloop\Lumberjack\Post as LumberjackPost;
 class Post extends LumberjackPost
 {
     ...
-    
+
     public function scopeExclude($query, $postId)
     {        
         return $query->whereIdNotIn([$postId]);    
@@ -216,6 +216,4 @@ All the available methods can be chained, with the exclusion of `getParameters` 
 * whereMetaRelationshipIs
 * get
 * clone
-
-
 

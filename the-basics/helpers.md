@@ -156,7 +156,7 @@ session()->forget('key');
 
 ### request
 
-The `request` helper returns the current `ServerRequest` object, which means you get access to [all  these available methods](http-requests.md#usage).
+The `request` helper returns the current `ServerRequest` object, which means you get access to [all these available methods](http-requests.md#usage).
 
 ```php
 $request = \Rareloop\Lumberjack\Helpers::request();
@@ -202,7 +202,7 @@ return \Rareloop\Lumberjack\Helpers::back()->with([
 return back()
     ->with('key', 'value')
     ->with('foo', 'bar');
-    
+
 // Or use an array with key/value pairs
 return back()->with([
     'key' => 'value,
@@ -227,12 +227,12 @@ This is particularly useful if your theme needs to _swallow_ any exceptions so t
 try {
     // This may throw an exception...
     $comment = Comment::add($data);
-    
+
     return JsonResponse($comment, 200);
 } catch (Exception $exception) {
     // Report the exception
     report($exception);
-    
+
     // Swallow the exception, and instead return a response
     return JsonResponse([], 400);
 }

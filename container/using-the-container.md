@@ -10,7 +10,7 @@ Having a deeper understanding of Lumberjack's dependency injection container wil
 
 There are many ways in which you can interact with the container. Primarily it's used for dependency injection. You can either inject classes that Lumberjack has bound, or bind something yourself. This is a great way of managing class dependencies within your theme.
 
-**The following examples will be using the `app()` global helper. If you do not have it enabled, you can use the `Helpers` class. For example:**
+**The following examples will be using the** `app()` **global helper. If you do not have it enabled, you can use the** `Helpers` **class. For example:**
 
 ```php
 app()->bind('key', 'value');
@@ -81,7 +81,7 @@ $value = app()->get('key');
 $value = app('key');
 ```
 
-You can use the container to create an object from any class that your application can autoload using `get()`, for example: 
+You can use the container to create an object from any class that your application can autoload using `get()`, for example:
 
 ```php
 use \MyNamespace\Comment;
@@ -211,7 +211,7 @@ $commentB->author; // Throws an error, undefined property!
 
 Here you can see that `$commentB->author` throws an error. **This is because closures will always create a new instance.**
 
-If you need to persist state, you should bind using `singleton`**:** 
+If you need to persist state, you should bind using `singleton`**:**
 
 ```php
 use App\Comment;
@@ -356,7 +356,7 @@ class MyController
 {
     public function __construct(MyClass $myClass)
     {
-    
+
     }
 }
 ```
