@@ -210,3 +210,44 @@ Router::group(['prefix' => 'my-prefix', 'middleware' => [$header, $auth]]), func
 });
 ```
 
+## Extending the Router
+
+The Lumberjack `Router` class can be extended with custom functionality at runtime \(the class is "macroable"\). The following example adds an `redirect` method to the `Router` class that can be used to easily declare redirect routes, without needing to handle the response logic yourself:
+
+```php
+use Rareloop\Lumberjack\Facades\Router;
+
+// Add the custom functionality
+Router::macro('redirect', function ($inputUrl, $outputUrl) {
+    $this->get($inputUrl, function () use ($outputUrl) {
+        return new RedirectResponse($outputUrl);
+    });
+});
+
+// Use the custom functionality
+Router::redirect('/old/url', '/new/url');
+```
+
+It is also possible to extend the `Route` class too, this can be useful for encapsulating common route behaviour in a more fluent API.
+
+```php
+use Rareloop\Lumberjack\Facades\Router;
+use Rareloop\Router\Route;
+
+// Add the custom functionality
+Route::macro('adminOnly', function () {
+    $this->middleware(new App\AdminMiddlewareOne);
+    $this->middleware(new App\AdminMiddlewareTwo);
+    $this->middleware(new App\AdminMiddlewareThree);
+    
+    return $this;
+});
+
+// Use the custom functionality
+Router::get('route/uri', 'AdminController@action')->adminOnly();
+```
+
+{% hint style="warning" %}
+Remember to `return $this` in your custom `Route` macro extensions so that the API remains chainable.
+{% endhint %}
+
