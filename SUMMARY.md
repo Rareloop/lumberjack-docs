@@ -16,6 +16,7 @@
 * [WordPress Controllers](the-basics/wordpress-controllers.md)
 * [Post Types](the-basics/post-types.md)
 * [Query Builder](the-basics/query-builder.md)
+* [View Models](the-basics/view-models.md)
 * [HTTP Requests](the-basics/http-requests.md)
 * [HTTP Responses](the-basics/http-responses.md)
 * [Sessions](the-basics/session.md)
