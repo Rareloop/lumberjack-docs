@@ -153,63 +153,6 @@ Router::map(['GET', 'POST'], 'posts/list', function () {
 * `uri` \(string\): The URI to match against
 * `action` \(function\|string\): Either a closure or a Controller string
 
-## Middleware
-
-PSR-15/7 Middleware can be added to both routes and groups on the route.
-
-### **Adding Middleware to a route**
-
-At it's simplest, adding Middleware to a route can be done by passing an object to the `middleware()` function:
-
-```php
-$middleware = new AddHeaderMiddleware('X-Key1', 'abc');
-
-Router::get('route/uri', '\MyNamespace\TestController@testMethod')->middleware($middleware);
-```
-
-Multiple middleware can be added by passing more params to the `middleware()` function:
-
-```php
-$header = new AddHeaderMiddleware('X-Key1', 'abc');
-$auth = new AuthMiddleware();
-
-Router::get('route/uri', '\MyNamespace\TestController@testMethod')->middleware($header, $auth);
-```
-
-Or alternatively, you can also pass an array of middleware:
-
-```php
-$header = new AddHeaderMiddleware('X-Key1', 'abc');
-$auth = new AuthMiddleware();
-
-Router::get('route/uri', '\MyNamespace\TestController@testMethod')->middleware([$header, $auth]);
-```
-
-### **Adding Middleware to a group**
-
-Middleware can also be added to a group. To do so you need to pass an array as the first parameter of the `group()`function instead of a string.
-
-```php
-$header = new AddHeaderMiddleware('X-Key1', 'abc');
-
-Router::group(['prefix' => 'my-prefix', 'middleware' => $header]), function ($group) {
-    $group->get('route1', function () {}); // GET `/my-prefix/route1`
-    $group->get('route2', function () {}); // GET `/my-prefix/route2`
-});
-```
-
-You can also pass an array of middleware if you need more than one:
-
-```php
-$header = new AddHeaderMiddleware('X-Key1', 'abc');
-$auth = new AuthMiddleware();
-
-Router::group(['prefix' => 'my-prefix', 'middleware' => [$header, $auth]]), function ($group) {
-    $group->get('route1', function () {}); // GET `/my-prefix/route1`
-    $group->:get('route2', function () {}); // GET `/my-prefix/route2`
-});
-```
-
 ## Extending the Router
 
 The Lumberjack `Router` class can be extended with custom functionality at runtime \(the class is "macroable"\). The following example adds an `redirect` method to the `Router` class that can be used to easily declare redirect routes, without needing to handle the response logic yourself:
