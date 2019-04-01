@@ -153,3 +153,4 @@ $posts = Post::all(10, 'title', 'asc');
 // Accepts the WP_Query args as an array. By default it will filter by published posts for the correct post type too
 $products = Product::query(['s' => 'Toy Car']);
 ```
+
