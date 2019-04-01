@@ -57,6 +57,8 @@ class MyController extends Controller
 }
 ```
 
+{% page-ref page="the-basics/middleware.md" %}
+
 #### Config has\(\)
 
 Lumberjack's configuration class now lets you check whether a config file contains a given item:
@@ -71,12 +73,14 @@ Note that the `has` method only checks whether the config item exists, regardles
 
 If you set `app.mySetting` to an empty value such as `false` or `null`, `has('app.mySetting')` will return `true`.
 
+{% page-ref page="getting-started/configuration.md" %}
+
 ### Documentation
 
 We have also added/revisited some of the documentation. We recommend checking these out:
 
 * [View Models](the-basics/view-models.md) -  New documentation
-* Middleware - New documentation
+* [Middleware](the-basics/middleware.md) - New documentation
 
 ## What's new in v4.1
 
