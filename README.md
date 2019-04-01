@@ -52,9 +52,8 @@ class IndexController
 
 ### You're in good company
 
-> Lumberjack has reinvigorated my passion for WordPress development by bringing in concepts and features from modern frameworks like Laravel. As a result, the speed and quality of the code I'm writing has improved and I'm actually enjoying WordPress projects again. - _Luke Hopkins_
-
-### Built on strong foundations
+> Lumberjack has reinvigorated my passion for WordPress development by bringing in concepts and features from modern frameworks like Laravel. As a result, the speed and quality of the code I'm writing has improved and I'm actually enjoying WordPress projects again.Built on strong foundations  
+>  - _**Jared Novack - Timber creator**_
 
 Standing on the shoulders of giants, Lumberjack proudly builds on the great work of other open source WordPress projects:
 
