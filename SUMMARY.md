@@ -18,10 +18,10 @@
 * [Post Types](the-basics/post-types.md)
 * [View Models](the-basics/view-models.md)
 * [HTTP Requests](the-basics/http-requests.md)
-* [Query Builder](the-basics/query-builder.md)
 * [HTTP Responses](the-basics/http-responses.md)
 * [Sessions](the-basics/session.md)
 * [Helpers](the-basics/helpers.md)
+* [Query Builder](the-basics/query-builder.md)
 
 ## Container
 

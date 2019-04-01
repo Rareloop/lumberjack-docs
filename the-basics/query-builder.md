@@ -17,6 +17,7 @@ Or by using the query builder directly:
 ```php
 use App\PostTypes\Project;
 use App\PostTypes\CaseStudy;
+use Rareloop\Lumberjack\QueryBuilder;
 
 $posts = QueryBuilder::wherePostType([
     Project::getPostType(),
@@ -215,5 +216,28 @@ All the available methods can be chained, with the exclusion of `getParameters` 
 * whereMeta
 * whereMetaRelationshipIs
 * get
+* first
+* as
 * clone
+
+## Extending the Query Builder
+
+The Lumberjack `QueryBuilder` class can be extended with custom functionality at runtime \(the class is "macroable"\). The following example adds a `search` method to the `QueryBuilder` class that can be used to filter results based on a keyword search:
+
+```php
+use Rareloop\Lumberjack\QueryBuilder;
+
+// Add custom function
+QueryBuilder::macro('search', function ($term) {
+    $this->['params']['s'] = $term;
+    
+    return $this;
+});
+
+// Use the functionality
+$query = new QueryBuilder();
+$query->search('Elephant');
+
+$posts = $query->get();
+```
 
