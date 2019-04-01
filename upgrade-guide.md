@@ -1,5 +1,52 @@
 # Upgrade Guide
 
+## Upgrading to v4.2 from v4.1
+
+We aim to document all the changes that could impact your theme, and there may only be a portion that are applicable to your theme.
+
+### Extending controllers
+
+Create `app/Http/Controllers/Controller.php`  with the following contents:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Rareloop\Lumberjack\Http\Controller as BaseController;
+
+class Controller extends BaseController
+{
+
+}
+```
+
+In all of your controllers, extend from this new base controller. For example:
+
+```php
+/**
+ * The Template for displaying all single posts
+ */
+
+namespace App;
+
+use App\Http\Controllers\Controller;
+// ...
+
+class SingleController extends Controller
+{
+```
+
+Here are the list of controllers that come out of the box:
+
+* `404.php`
+* `archive.php`
+* `author.php`
+* `index.php`
+* `page.php`
+* `search.php`
+* `single.php`
+
 ## Upgrading to v4 from v3
 
 We aim to document all the changes that could impact your theme, and there may only be a portion that are applicable to your theme.
