@@ -14,14 +14,15 @@
 * [Lifecycle](the-basics/lifecycle.md)
 * [Routing](the-basics/routing.md)
 * [WordPress Controllers](the-basics/wordpress-controllers.md)
-* [Middleware](the-basics/middleware.md)
 * [Post Types](the-basics/post-types.md)
+* [Query Builder](the-basics/query-builder.md)
 * [View Models](the-basics/view-models.md)
 * [HTTP Requests](the-basics/http-requests.md)
 * [HTTP Responses](the-basics/http-responses.md)
+* [Middleware](the-basics/middleware.md)
 * [Sessions](the-basics/session.md)
 * [Helpers](the-basics/helpers.md)
-* [Query Builder](the-basics/query-builder.md)
+* [Collections](the-basics/collections.md)
 
 ## Container
 
