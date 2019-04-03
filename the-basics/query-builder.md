@@ -612,13 +612,13 @@ use Rareloop\Lumberjack\QueryBuilder;
 
 // Add custom function
 QueryBuilder::macro('search', function ($term) {
-    $this->['params']['s'] = $term;
+    $this->params['s'] = $term;
     
     return $this;
 });
 
 QueryBuilder::macro('writtenByCurrentUser', function () {
-    $this->['params']['author'] = get_current_user_id();
+    $this->params['author'] = get_current_user_id();
     
     return $this;
 });

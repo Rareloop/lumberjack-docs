@@ -17,7 +17,7 @@ use Rareloop\Lumberjack\QueryBuilder;
 
 // Add custom function
 QueryBuilder::macro('search', function ($term) {
-    $this->['params']['s'] = $term;
+    $this->params['s'] = $term;
     
     return $this;
 });
