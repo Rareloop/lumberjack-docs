@@ -58,6 +58,10 @@ class Product extends Post
 }
 ```
 
+_If collections are new to you, be sure the check out the documentation on them:_
+
+{% page-ref page="collections.md" %}
+
 ## Register Custom Post Types
 
 First, create a new file in `app/PostTypes/`. We recommend using singular names. For this example, lets add a `Product.php` file there.

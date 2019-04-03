@@ -99,6 +99,10 @@ All post types extend [Timber's Post object](https://timber.github.io/docs/refer
 The example above is making use of Timber's `thumbnail()` method on a [Post](https://timber.github.io/docs/reference/timber-post/), and `src()` method on an [Image](https://timber.github.io/docs/reference/timber-image/).
 {% endhint %}
 
+_If collections are new to you, be sure the check out the documentation on them:_
+
+{% page-ref page="collections.md" %}
+
 ### Query scopes
 
 Sometimes you will need to perform the same filter on a query in multiple places within your theme.

@@ -36,6 +36,10 @@ return new TimberResponse('home.twig', $context);
 
 When passing context data to TimberResponse, any objects that implement the `Rareloop\Lumberjack\Contracts\Arrayable` contract will automatically be flattened to a standard PHP array. This means that it is safe to use objects such as `Collection` and `ViewModel` in your data without it causing issues with Twig.
 
+{% page-ref page="view-models.md" %}
+
+{% page-ref page="collections.md" %}
+
 ### Redirect Response
 
 Redirecting to a different URL can be done by returning an instance of `Rareloop\Lumberjack\Http\Responses\RedirectResponse`.
@@ -52,7 +56,7 @@ return new RedirectResponse('/another/page');
 
 If you want to redirect to a URL and also flash some data to the session, you can use the `with()` method.
 
-```text
+```php
 return new RedirectResponse('/another/page')
     ->with('error', 'Something went wrong');
 ```

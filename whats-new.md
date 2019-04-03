@@ -81,6 +81,7 @@ We have also added/revisited some of the documentation. We recommend checking th
 
 * [View Models](the-basics/view-models.md) -  New documentation
 * [Middleware](the-basics/middleware.md) - New documentation
+* [Collections](the-basics/collections.md) - New documentation
 
 ## What's new in v4.1
 
