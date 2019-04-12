@@ -19,7 +19,7 @@ use App\PostTypes\Project;
 use App\PostTypes\CaseStudy;
 use Rareloop\Lumberjack\QueryBuilder;
 
-$posts = QueryBuilder::wherePostType([
+$posts = (new QueryBuilder)->wherePostType([
     Project::getPostType(),
     CaseStudy::getPostType(),
 ])
