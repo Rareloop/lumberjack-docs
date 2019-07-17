@@ -44,8 +44,8 @@ Lumberjack comes with a handful of useful Facades. Below you can see which class
 
 | Facade | Class Reference | Container binding |
 | :--- | :--- | :--- |
-| Config | `Rareloop\Lumberjack\Config` | `config` |
-| Log | `Monolog\Logger` | `logger` |
+| Config | `Monolog\Logger` | `config` |
+| Log | `Rareloop\Lumberjack\Config` | `logger` |
 | Router | `Rareloop\Lumberjack\Http\Route` | `router` |
 | Session | `Rareloop\Lumberjack\Session\SessionManager` | `session` |
 
