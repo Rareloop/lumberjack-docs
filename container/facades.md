@@ -40,7 +40,7 @@ class Log extends AbstractFacade
 
 ## Existing Facades
 
-Lumberjack comes with a handful of useful Facades. Below you can see which class each Facade references and what it's bound to within the container.
+Lumberjack comes with a handful of useful Facades. Below you can see which class the Facade references and what it is bound to the container under.
 
 | Facade | Class Reference | Container binding |
 | :--- | :--- | :--- |
@@ -51,7 +51,7 @@ Lumberjack comes with a handful of useful Facades. Below you can see which class
 
 ### Example usage
 
-All of Lumberjack's Facades live under the `Rareloop\Lumberjack\Facades` namespace and can be used like so:
+All of Lumberjack's Facades live under the `Rareloop\Lumberjack\Facades` namespace, and can be used like so:
 
 ```php
 use Rareloop\Lumberjack\Facades\Config;
