@@ -2,13 +2,126 @@
 
 This release of Lumberjack is jam packed full of goodies. We have also added a whole lot more documentation, so grab a cuppa and make yourself comfy while we take you through all the changes.
 
-## General
+## What's new in v4.2
 
-### PHP Version
+### Features
+
+#### Query Builder
+
+The Query Builder became macroable & also received one new useful method: `first()`.
+
+You can now add your own functionality to the query builder by using a macro. In this example we are adding a custom `search` method:
+
+```php
+use Rareloop\Lumberjack\QueryBuilder;
+
+// Add custom function
+QueryBuilder::macro('search', function ($term) {
+    $this->params['s'] = $term;
+    
+    return $this;
+});
+
+// Use the functionality
+$query = new QueryBuilder();
+$query->search('Elephant');
+
+$posts = $query->first();
+```
+
+{% page-ref page="the-basics/query-builder.md" %}
+
+#### Define middleware in controllers
+
+You can now apply Middleware on a Controller class too, either for use with the [Router](the-basics/routing.md) or as a [WordPress Controller](the-basics/wordpress-controllers.md). In order to do this your Controller must extend the `App\Http\Controllers\Controller` base class.
+
+Middleware is added by calling the `middleware()` function in your Controller's `__constructor()`.
+
+```php
+use App\Http\Controllers\Controller;
+
+class MyController extends Controller
+{
+    public function __construct()
+    {
+        // Add one at a time
+        $this->middleware(new AddHeaderMiddleware('X-Key1', 'abc'));
+        $this->middleware(new AuthMiddleware());
+
+        // Add multiple with one method call
+        $this->middleware([
+            new AddHeaderMiddleware('X-Key1', 'abc',
+            new AuthMiddleware(),
+        ]);
+    }
+}
+```
+
+{% page-ref page="the-basics/middleware.md" %}
+
+#### Config has\(\)
+
+Lumberjack's configuration class now lets you check whether a config file contains a given item:
+
+```php
+if (Config::has('app.mySetting') {
+    // ...
+}
+```
+
+Note that the `has` method only checks whether the config item exists, regardless of its value. 
+
+If you set `app.mySetting` to an empty value such as `false` or `null`, `has('app.mySetting')` will return `true`.
+
+{% page-ref page="getting-started/configuration.md" %}
+
+### Documentation
+
+We have also added/revisited some of the documentation. We recommend checking these out:
+
+* [View Models](the-basics/view-models.md) -  New documentation
+* [Middleware](the-basics/middleware.md) - New documentation
+* [Collections](the-basics/collections.md) - New documentation
+
+## What's new in v4.1
+
+### Features
+
+#### Extending Lumberjack with Macros
+
+You can now extend core Lumberjack classes and add your own functionality without needing to rely on inheritance. Instead, you can add macros \(custom functions\) to the core classes themselves.
+
+Here's an example macro, that adds a custom `acf()` method on `Rareloop\Lumberjack\Post`. 
+
+```php
+use Rareloop\Lumberjack\Post;
+
+// Add custom function
+Post::macro('acf', function ($field) {
+    return get_field($field, $this->id);
+});
+
+// Use the functionality
+$post = new Post;
+$value = $post->acf('custom_field_name');
+```
+
+The following classes are 'macroable':
+
+* `Rareloop\Lumberjack\Post`
+* `Rareloop\Router\Router`
+* `Rareloop\Router\RouteGroup`
+* `Rareloop\Router\Route`
+
+## What's new in v4.0
+
+### General 
+
+#### PHP Version
 
 The first important thing to mention is that the minimum version of PHP has been bumped up to `7.1`. So make sure your server can handle this version.
 
-### Standardising the Container
+#### Standardising the Container
 
 Lumberjack uses a [dependency injection container](container/using-the-container.md) under the hood, which allows you to decouple your class dependencies by having the container inject dependencies when needed.
 
@@ -116,9 +229,9 @@ Head over to the "Using the Container" docs to learn more:
 
 {% page-ref page="container/using-the-container.md" %}
 
-## Features
+### Features
 
-### New helper functions
+#### New helper functions
 
 To make your development lives easier, there are now some additional helper functions available. These are:
 
@@ -132,13 +245,13 @@ Check out the Helpers documentation for more details:
 
 {% page-ref page="the-basics/helpers.md" %}
 
-### Query Builder
+#### Query Builder
 
 We've baked-in the [rareloop/lumberjack-querybuilder](https://github.com/Rareloop/lumberjack-querybuilder) package into the core. You now get an expressive, fluent and explicit way of querying data in WordPress out-of-the-box with Lumberjack. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class_Reference/WP_Query) to query posts \(of any type\) and means you do not have to worry about "the loop".
 
 {% page-ref page="the-basics/query-builder.md" %}
 
-### Sessions
+#### Sessions
 
 This is one of the bigger features added to v4. You can now manage sessions in a concise, expressive and headache-free way.
 
@@ -168,7 +281,7 @@ Be sure to read the Sessions documentation for a more in-depth look:
 
 {% page-ref page="the-basics/session.md" %}
 
-### Interacting with the request
+#### Interacting with the request
 
 In v3, you could access the request by dependency injecting `Zend\Diactoros\ServerRequest`, like so:
 
@@ -209,7 +322,7 @@ $request = Helpers::request();
 $request = request();
 ```
 
-#### Overview of some available methods
+**Overview of some available methods**
 
 ```php
 // Get the current path
@@ -237,7 +350,7 @@ You can read the HTTP Requests documentation for more information:
 
 {% page-ref page="the-basics/http-requests.md" %}
 
-## Documentation
+### Documentation
 
 We have also added/revisited some of the documentation. We recommend checking these out:
 

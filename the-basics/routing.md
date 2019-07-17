@@ -27,9 +27,86 @@ Router::delete('test/route', function () {});
 Router::options('test/route', function () {});
 ```
 
+{% hint style="info" %}
+WordPress doesn't know anything about custom routes, so you may need to manually handle things like the page meta \(e.g. title\). Generally it is best to use WordPress where you can and use custom routes for anything non-standard.
+
+Some good candidates for a custom route could include:
+
+* An AJAX endpoint
+* An endpoint to POST a form to \(which could send an email\)
+* A custom e-commerce checkout workflow \(e.g. basket, checkout, confirmation pages\)
+{% endhint %}
+
+### Setting the page title for custom routes
+
+If you need to set the page title for your custom route, you can manually call the `wp_title` filter. For example:
+
+```php
+namespace App\Http\Controllers;
+
+class TestController
+{
+    public function __construct()
+    {
+        add_filter('wp_title', function ($title) {
+            return 'My Custom Title';
+        });
+    }
+    
+    public function show()
+    {
+        return 'Hello World';
+    }
+}
+```
+
+If your controller has multiple methods, then you could do something like this:
+
+```php
+namespace App\Http\Controllers;
+
+class TestController
+{
+    protected $pageTitle;
+
+    public function __construct()
+    {
+        add_filter('wp_title', function ($title) {
+            if (!empty($this->pageTitle)) {
+                return $this->pageTitle;
+            }
+
+            return $title;
+        });
+    }
+    
+    protected function setPageTitle(string $title) {
+        $this->pageTitle = $title;
+    }
+    
+    public function basket()
+    {
+        $this->setPageTitle('Basket');
+        
+        return 'Basket...';
+    }
+    
+    public function checkout()
+    {
+        $this->setPageTitle('Checkout');
+        
+        return 'Checkout...';
+    }
+}
+```
+
+
+
 ## Route Parameters
 
-Parameters can be defined on routes using the `{keyName}` syntax. When a route that contains parameters is matched, those parameters are available as injectable parameters in your callback/controller. The name of the route parameter and the controller parameter must be the same.
+Parameters can be defined on routes using the `{keyName}` syntax. When a route that contains parameters is matched, those parameters are available as injectable parameters in your callback/controller. 
+
+**The name of the route parameter and the controller parameter must be the same.**
 
 ```php
 Router::get('posts/{id}', function($id) {
@@ -37,7 +114,7 @@ Router::get('posts/{id}', function($id) {
 });
 ```
 
-As the parameters are injected by name, it doesn't matter which order you have the parameters in your callback/controller:
+As the parameters are injected by name, it doesn't matter which order you have the parameters in your callback:
 
 ```php
 // /posts/123/comments/1
@@ -45,6 +122,24 @@ Router::get('posts/{postId}/comments/{commentId}', function($commentId, $postId)
     echo $commendId; // 1
     echo $postId; // 123
 });
+```
+
+Or controller:
+
+```php
+// routes.php
+Router::get('posts/{postId}/comments/{commentId}', 'TestController@show');
+
+// app/Http/Controllers/TestController.php
+namespace App\Http\Controllers;
+
+class TestController
+{
+    public function show($postId, $commentId)
+    {
+        return 'Hello World';
+    }
+}
 ```
 
 ### Parameter Constraints
@@ -94,6 +189,9 @@ If you'd rather use a class to group related route actions together you can pass
 The string takes the format `{name of class}@{name of method}`. The Router will be default look for classes in the `App\Controllers` namespace, so you don't need to include this prefix in the Controller String.
 
 ```php
+// routes.php
+Router::get('route/uri', 'TestController@show');
+
 // app/Http/Controllers/TestController.php
 namespace App\Http\Controllers;
 
@@ -104,14 +202,14 @@ class TestController
         return 'Hello World';
     }
 }
-
-// routes.php
-Router::get('route/uri', 'TestController@show');
 ```
 
 If you want to reference a Controller in another namespace you'll need to append the complete namespace to the classname:
 
 ```php
+// routes.php
+Router::get('route/uri', '\My\Namespace\TestController@show');
+
 // My/Namespace/TestController.php
 namespace My\Namespace;
 
@@ -122,9 +220,6 @@ class TestController
         return 'Hello World';
     }
 }
-
-// routes.php
-Router::get('route/uri', '\My\Namespace\TestController@show');
 ```
 
 ### **Map**
@@ -153,60 +248,44 @@ Router::map(['GET', 'POST'], 'posts/list', function () {
 * `uri` \(string\): The URI to match against
 * `action` \(function\|string\): Either a closure or a Controller string
 
-## Middleware
+## Extending the Router
 
-PSR-15/7 Middleware can be added to both routes and groups on the route.
-
-### **Adding Middleware to a route**
-
-At it's simplest, adding Middleware to a route can be done by passing an object to the `middleware()` function:
+The Lumberjack `Router` class can be extended with custom functionality at runtime \(the class is "macroable"\). The following example adds an `redirect` method to the `Router` class that can be used to easily declare redirect routes, without needing to handle the response logic yourself:
 
 ```php
-$middleware = new AddHeaderMiddleware('X-Key1', 'abc');
+use Rareloop\Lumberjack\Facades\Router;
 
-Router::get('route/uri', '\MyNamespace\TestController@testMethod')->middleware($middleware);
-```
-
-Multiple middleware can be added by passing more params to the `middleware()` function:
-
-```php
-$header = new AddHeaderMiddleware('X-Key1', 'abc');
-$auth = new AuthMiddleware();
-
-Router::get('route/uri', '\MyNamespace\TestController@testMethod')->middleware($header, $auth);
-```
-
-Or alternatively, you can also pass an array of middleware:
-
-```php
-$header = new AddHeaderMiddleware('X-Key1', 'abc');
-$auth = new AuthMiddleware();
-
-Router::get('route/uri', '\MyNamespace\TestController@testMethod')->middleware([$header, $auth]);
-```
-
-### **Adding Middleware to a group**
-
-Middleware can also be added to a group. To do so you need to pass an array as the first parameter of the `group()`function instead of a string.
-
-```php
-$header = new AddHeaderMiddleware('X-Key1', 'abc');
-
-Router::group(['prefix' => 'my-prefix', 'middleware' => $header]), function ($group) {
-    $group->get('route1', function () {}); // GET `/my-prefix/route1`
-    $group->get('route2', function () {}); // GET `/my-prefix/route2`
+// Add the custom functionality
+Router::macro('redirect', function ($inputUrl, $outputUrl) {
+    $this->get($inputUrl, function () use ($outputUrl) {
+        return new RedirectResponse($outputUrl);
+    });
 });
+
+// Use the custom functionality
+Router::redirect('/old/url', '/new/url');
 ```
 
-You can also pass an array of middleware if you need more than one:
+It is also possible to extend the `Route` class too, this can be useful for encapsulating common route behaviour in a more fluent API.
 
 ```php
-$header = new AddHeaderMiddleware('X-Key1', 'abc');
-$auth = new AuthMiddleware();
+use Rareloop\Lumberjack\Facades\Router;
+use Rareloop\Router\Route;
 
-Router::group(['prefix' => 'my-prefix', 'middleware' => [$header, $auth]]), function ($group) {
-    $group->get('route1', function () {}); // GET `/my-prefix/route1`
-    $group->:get('route2', function () {}); // GET `/my-prefix/route2`
+// Add the custom functionality
+Route::macro('adminOnly', function () {
+    $this->middleware(new App\AdminMiddlewareOne);
+    $this->middleware(new App\AdminMiddlewareTwo);
+    $this->middleware(new App\AdminMiddlewareThree);
+    
+    return $this;
 });
+
+// Use the custom functionality
+Router::get('route/uri', 'AdminController@action')->adminOnly();
 ```
+
+{% hint style="warning" %}
+Remember to `return $this` in your custom `Route` macro extensions so that the API remains chainable.
+{% endhint %}
 

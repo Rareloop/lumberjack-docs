@@ -48,7 +48,7 @@ Once all service providers have been registered, Lumberjack then attempts to cal
 namespace App\Providers;
 
 use Rareloop\Lumberjack\Providers\ServiceProvider;
-use Rareloop\Lumberjack\Facades\Config;
+use Rareloop\Lumberjack\Config;
 
 /**
  * Add Option Pages to WP using the config, using ACF

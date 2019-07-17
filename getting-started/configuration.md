@@ -39,6 +39,20 @@ If you need to update a config option, you can use the `set` method, like so:
 Config::set('app.debug', false);
 ```
 
+You can check whether an item exists in the config:
+
+```php
+if (Config::has('app.mySetting') {
+    // ...
+}
+```
+
+{% hint style="warning" %}
+**Note that the `has` method only checks whether the config item exists, regardless of its value**. 
+
+If you set `app.mySetting` to an empty value such as `false` or `null`, `has('app.mySetting')` will return `true`.
+{% endhint %}
+
 ## Adding your own config files
 
 Chances are, you're going to need to add your own config files at some point. All you need to do is create a new `.php` file in the `config/` directory, and have it return an array.

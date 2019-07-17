@@ -40,42 +40,66 @@ class Log extends AbstractFacade
 
 ## Available Facades
 
-The following Facades are already registered within Lumberjack.
+Lumberjack comes with a handful of useful Facades. Below you can see which class the Facade references and what it is bound to the container under.
 
-* [Config](facades.md#Config)
-* [Log](facades.md#Log)
-* [Router](facades.md#Router)
-* [Session](facades.md#Session)
+| Facade | Class Reference | Container binding |
+| :--- | :--- | :--- |
+| Config | `Monolog\Logger` | `config` |
+| Log | `Rareloop\Lumberjack\Config` | `logger` |
+| Router | `Rareloop\Lumberjack\Http\Route` | `router` |
+| Session | `Rareloop\Lumberjack\Session\SessionManager` | `session` |
 
-### Config
+### Example usage
 
-The `config` facade allows you to get and set values from your config.
+All of Lumberjack's Facades live under the `Rareloop\Lumberjack\Facades` namespace, and can be used like so:
+
+#### Config
+
+The `Config` facade allows you to get and set values from your config.
 
 ```php
-$value = Config::get('app.environment');
+use Rareloop\Lumberjack\Facades\Config;
+
+Config::set('app.debug', false);
+
+$value = Config::get('app.debug');
 ```
 
 Config is also available as a [Helper](https://docs.lumberjack.rareloop.com/the-basics/helpers#config)
 
-### Log
+#### Log
 
-The `log` facade allows you to use the [PSR-3](https://www.php-fig.org/psr/psr-3/) Logger [Monolog](https://github.com/Seldaek/monolog).
+The `Log` facade allows you to use the [PSR-3](https://www.php-fig.org/psr/psr-3/) Logger [Monolog](https://github.com/Seldaek/monolog).
 
 ```php
-$value = Log::warning('oops');
+use Rareloop\Lumberjack\Facades\Log;
+
+$value = Log::warning('Oops! Something went wrong');
 ```
 
-### Router
+#### Router
 
-The `router` facade allows you to define named routes.
+The `Router` facade allows you to create custom routes or get the URLs for your routes.
+
+```php
+use Rareloop\Lumberjack\Facades\Router;
+
+Router::get('posts/all', function () {})->name('posts.index');
+
+$url = Router::url('posts.index');
+```
 
 See [Creating Routes](https://docs.lumberjack.rareloop.com/the-basics/routing#creating-routes) for more information.
 
-### Session
+#### Session
 
-The `session` facade allows you to retrieve and store data in the current session.
+The `Session` facade allows you to retrieve and store data in the current session.
 
 ```php
+use Rareloop\Lumberjack\Facades\Session;
+
+Session::put('name', 'Chris');
+
 $name = Session::get('name');
 ```
 

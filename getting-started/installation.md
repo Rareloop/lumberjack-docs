@@ -18,7 +18,7 @@ This is the recommended way to create a new site and assumes you want to build o
 Download the Lumberjack Bedrock Installer with Composer _\(you only need to do this the first time\)_:
 
 ```bash
-composer global require lumberjack-bedrock
+composer global require rareloop/lumberjack-bedrock-installer
 ```
 
 Make sure that Composer's global `vendor` bin directory is in your `$PATH` so that the installer can be used.
