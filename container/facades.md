@@ -38,3 +38,24 @@ class Log extends AbstractFacade
 }
 ```
 
+## Existing Facades
+
+Lumberjack comes with a handful of useful Facades. Below you can see which class each Facade references and what it's bound to within the container.
+
+| Facade | Class Reference | Container binding |
+| :--- | :--- | :--- |
+| Config | `Rareloop\Lumberjack\Config` | `config` |
+| Log | `Monolog\Logger` | `logger` |
+| Router | `Rareloop\Lumberjack\Http\Route` | `router` |
+| Session | `Rareloop\Lumberjack\Session\SessionManager` | `session` |
+
+### Example usage
+
+All of Lumberjack's Facades live under the `Rareloop\Lumberjack\Facades` namespace and can be used like so:
+
+```php
+use Rareloop\Lumberjack\Facades\Config;
+
+Config::get('app.environment');
+```
+
