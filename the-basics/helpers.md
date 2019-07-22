@@ -37,6 +37,7 @@ Then, tell composer to regenerate its list of autoloaded files by running `compo
 * [request](helpers.md#request)
 * [back](helpers.md#back)
 * [report](helpers.md#report)
+* [logger](helpers.md#logger)
 
 ### app
 
@@ -239,4 +240,37 @@ try {
 ```
 
 "Swallowing" here simply means that the exception is unable to bubble all the way up to the Exception Handler where it normally gets reported.
+
+### logger
+
+{% hint style="info" %}
+Available in `v4.3.0` and above
+{% endhint %}
+
+The `logger` helper can be used to write **debug** messages to your logs.
+
+```php
+\Rareloop\Lumberjack\Helpers::logger('Example message');
+
+// Global function
+logger('Example message');
+```
+
+You can also pass in an array of additional data alongside your message.
+
+```php
+\Rareloop\Lumberjack\Helpers::logger('Product added to basket', ['id' => $product->id]);
+
+// Global function
+logger('Product added to basket', ['id' => $product->id]);
+```
+
+If you need to access the logger class itself, to log different types of errors for example, you can use the `logger` function with no arguments. This will get you an instance of the PSR3 compliant logger that is bound to the container. By default Lumberjack uses `Monolog\Logger`.
+
+```php
+\Rareloop\Lumberjack\Helpers::logger()->warning('Example warning');
+
+// Global function
+logger()->warning('Example warning');
+```
 
