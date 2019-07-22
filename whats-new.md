@@ -2,6 +2,63 @@
 
 This release of Lumberjack is jam packed full of goodies. We have also added a whole lot more documentation, so grab a cuppa and make yourself comfy while we take you through all the changes.
 
+## What's new in v4.3
+
+### Features
+
+#### Middleware Aliases on routes and controllers
+
+You can now create Middleware Aliases that can be used anywhere that middleware can normally be used, both in the Router and through Controllers.
+
+If, for example, an Alias had been registered for an `AuthMiddleware` with the key `auth` like so:
+
+```php
+MiddlewareAliases::set('auth', function() {
+    return new AuthMiddleware;
+});
+```
+
+You can now use this in your route definition like this:
+
+```php
+Router::get(
+    'route/uri', 
+    '\App\Http\Controllers\TestController@testMethod'
+)->middleware('auth');
+```
+
+{% page-ref page="the-basics/middleware.md" %}
+
+#### `logger()` helper
+
+The `logger` helper can be used to write **debug** messages to your logs.
+
+```php
+\Rareloop\Lumberjack\Helpers::logger('Product added to basket', ['id' => $product->id]);
+
+// Global function
+logger('Product added to basket', ['id' => $product->id]);
+```
+
+If you need to access the logger class itself, to log different types of errors for example, you can use the `logger` function with no arguments. This will get you an instance of the PSR3 compliant logger that is bound to the container. By default Lumberjack uses `Monolog\Logger`.
+
+```php
+\Rareloop\Lumberjack\Helpers::logger()->warning('Example warning');
+
+// Global function
+logger()->warning('Example warning');
+```
+
+{% hint style="info" %}
+Also, the `Logger` instance is now also bound to the PSR-3 interface `Psr\Log\LoggerInterface` in the Container.
+{% endhint %}
+
+{% page-ref page="the-basics/helpers.md" %}
+
+### Patches
+
+The `E_USER_NOTICE` and `E_USER_DEPRECATED` errors are now whitelisted from the Exception Handler so that they aren’t fatal.
+
 ## What's new in v4.2
 
 ### Features

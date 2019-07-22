@@ -1,5 +1,9 @@
 # Upgrade Guide
 
+## Upgrading to v4.3 from v4.2
+
+There is nothing that requires upgrading between these versions.
+
 ## Upgrading to v4.2 from v4.1
 
 We aim to document all the changes that could impact your theme, and there may only be a portion that are applicable to your theme.
@@ -46,6 +50,10 @@ Here are the list of controllers that come out of the box:
 * `page.php`
 * `search.php`
 * `single.php`
+
+## Upgrading to v4.1 from v4.0
+
+There is nothing that requires upgrading between these versions.
 
 ## Upgrading to v4 from v3
 
