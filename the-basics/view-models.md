@@ -1,6 +1,6 @@
 # View Models
 
-View Models are useful for preparing data for your Twig views. It’s common \(and typically desirable\) for the shape of the data needed by your views to be different from how it is stored in the database or Post objects. How this data is transformed can be encapsulated in a View Model, cutting down repetitive code you have in your Controllers.
+View Models are useful for preparing data for your Twig views. It’s common (and typically desirable) for the shape of the data needed by your views to be different from how it is stored in the database or Post objects. How this data is transformed can be encapsulated in a View Model, cutting down repetitive code you have in your Controllers.
 
 ## Example Controller
 
@@ -62,7 +62,7 @@ class MediaCardViewModel extends ViewModel
 }
 ```
 
-Now lets pass in the post object into the view model and keep a \(protected\) reference to it.
+Now lets pass in the post object into the view model and keep a (protected) reference to it.
 
 ```php
 <?php
@@ -85,7 +85,7 @@ class MediaCardViewModel extends ViewModel
 
 View models are automatically converted to arrays when passed into a `twig` template. **Public methods are used as keys in this array, and the method is executed to get the value.**
 
-Below we have added 3 public methods \(`title`, `description` and `published`\). These are the keys that our view needs.
+Below we have added 3 public methods (`title`, `description` and `published`). These are the keys that our view needs.
 
 ```php
 <?php
@@ -148,7 +148,7 @@ class SingleController
 }
 ```
 
-The above will ensure the `$context` looks like the following when the view model has been converted to an array \(without having to have prepared the `card` structure in the Controller\):
+The above will ensure the `$context` looks like the following when the view model has been converted to an array (without having to have prepared the `card` structure in the Controller):
 
 ```php
 $context = [
@@ -163,7 +163,7 @@ $context = [
 ```
 
 {% hint style="info" %}
-Remember: All view models \(and collections\) in the context are automatically flattened to arrays before being passed to `twig` views.
+Remember: All view models (and collections) in the context are automatically flattened to arrays before being passed to `twig` views.
 {% endhint %}
 
 ### Manually converting view models to arrays
@@ -206,7 +206,7 @@ namespace App\ViewModels;
 use Rareloop\Lumberjack\Post;
 use Rareloop\Lumberjack\ViewModel;
 use App\ViewModels\MediaCardViewModel;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class MediaCardsViewModel extends ViewModel
 {
@@ -307,7 +307,7 @@ class SingleController
 }
 ```
 
-**In order to keep your view models generic, and your controllers light \(and DRY\) you can create something called a "named constructor" on your view model.**
+**In order to keep your view models generic, and your controllers light (and DRY) you can create something called a "named constructor" on your view model.**
 
 This is simply a `static` method on your view model that constructs the view model _for a specific use case_.
 
@@ -382,8 +382,8 @@ class SingleController
 ```
 
 {% hint style="info" %}
-You can have multiple named constructors on a view model to construct it with different data. For example you could have a `PostTeasersViewModel` which transforms a collection of posts ready for a list view.  
-  
+You can have multiple named constructors on a view model to construct it with different data. For example you could have a `PostTeasersViewModel` which transforms a collection of posts ready for a list view.
+
 And you could have the following named constructor:
 
 * `latestPosts($limit = 3)`- which knows how to get the latest _n_ posts.
@@ -392,9 +392,8 @@ And you could have the following named constructor:
 
 ## Using Hatchet
 
-If you are using [hatchet](https://github.com/Rareloop/hatchet) \(Lumberjack's CLI\), you can easily create view models with the following command:
+If you are using [hatchet](https://github.com/Rareloop/hatchet) (Lumberjack's CLI), you can easily create view models with the following command:
 
 ```bash
 php hatchet make:viewmodel TestimonialViewModel
 ```
-

@@ -1,8 +1,32 @@
 # What's New
 
-This release of Lumberjack is jam packed full of goodies. We have also added a whole lot more documentation, so grab a cuppa and make yourself comfy while we take you through all the changes.
+## What's new in v6.0
+
+Lumberjack v6.0 comes with PHP 8.1 support. It also replaced the (deprecated) [tightenco/collect](https://packagist.org/packages/tightenco/collect) package with [illuminate/collections](https://packagist.org/packages/illuminate/collections) package.
+
+### Features
+
+Lumberjack will no longer give a 500 error for deprecation warnings, and instead will only "report" these to your error log.
+
+Specifically, lumberjack will only report (and not render) the following error codes:
+
+* `E_DEPRECATED` - [_Run-time notices. Enable this to receive warnings about code that will not work in future versions._](#user-content-fn-1)[^1]
+* `E_USER_DEPRECATED` - _User-generated warning message. This is like an E\_DEPRECATED, except it is generated in PHP code by using the PHP function trigger\_error()._
+* `E_USER_NOTICE` - _User-generated notice message. This is like an E\_NOTICE, except it is generated in PHP code by using the PHP function trigger\_error()._
+
+If you need to change this behaviour, you can add a new config file `config/errors.php` in your theme, like so:
+
+```php
+<?php
+
+return [
+    'reportOnly' => [E_USER_ERROR],
+];
+```
 
 ## What's new in v4.3
+
+This release of Lumberjack is jam packed full of goodies. We have also added a whole lot more documentation, so grab a cuppa and make yourself comfy while we take you through all the changes.
 
 ### Features
 
@@ -27,7 +51,9 @@ Router::get(
 )->middleware('auth');
 ```
 
-{% page-ref page="the-basics/middleware.md" %}
+{% content-ref url="the-basics/middleware.md" %}
+[middleware.md](the-basics/middleware.md)
+{% endcontent-ref %}
 
 #### `logger()` helper
 
@@ -53,7 +79,9 @@ logger()->warning('Example warning');
 Also, the `Logger` instance is now also bound to the PSR-3 interface `Psr\Log\LoggerInterface` in the Container.
 {% endhint %}
 
-{% page-ref page="the-basics/helpers.md" %}
+{% content-ref url="the-basics/helpers.md" %}
+[helpers.md](the-basics/helpers.md)
+{% endcontent-ref %}
 
 ### Patches
 
@@ -86,7 +114,9 @@ $query->search('Elephant');
 $posts = $query->first();
 ```
 
-{% page-ref page="the-basics/query-builder.md" %}
+{% content-ref url="the-basics/query-builder.md" %}
+[query-builder.md](the-basics/query-builder.md)
+{% endcontent-ref %}
 
 #### Define middleware in controllers
 
@@ -114,9 +144,11 @@ class MyController extends Controller
 }
 ```
 
-{% page-ref page="the-basics/middleware.md" %}
+{% content-ref url="the-basics/middleware.md" %}
+[middleware.md](the-basics/middleware.md)
+{% endcontent-ref %}
 
-#### Config has\(\)
+#### Config has()
 
 Lumberjack's configuration class now lets you check whether a config file contains a given item:
 
@@ -126,17 +158,19 @@ if (Config::has('app.mySetting') {
 }
 ```
 
-Note that the `has` method only checks whether the config item exists, regardless of its value. 
+Note that the `has` method only checks whether the config item exists, regardless of its value.
 
 If you set `app.mySetting` to an empty value such as `false` or `null`, `has('app.mySetting')` will return `true`.
 
-{% page-ref page="getting-started/configuration.md" %}
+{% content-ref url="getting-started/configuration.md" %}
+[configuration.md](getting-started/configuration.md)
+{% endcontent-ref %}
 
 ### Documentation
 
 We have also added/revisited some of the documentation. We recommend checking these out:
 
-* [View Models](the-basics/view-models.md) -  New documentation
+* [View Models](the-basics/view-models.md) - New documentation
 * [Middleware](the-basics/middleware.md) - New documentation
 * [Collections](the-basics/collections.md) - New documentation
 
@@ -146,9 +180,9 @@ We have also added/revisited some of the documentation. We recommend checking th
 
 #### Extending Lumberjack with Macros
 
-You can now extend core Lumberjack classes and add your own functionality without needing to rely on inheritance. Instead, you can add macros \(custom functions\) to the core classes themselves.
+You can now extend core Lumberjack classes and add your own functionality without needing to rely on inheritance. Instead, you can add macros (custom functions) to the core classes themselves.
 
-Here's an example macro, that adds a custom `acf()` method on `Rareloop\Lumberjack\Post`. 
+Here's an example macro, that adds a custom `acf()` method on `Rareloop\Lumberjack\Post`.
 
 ```php
 use Rareloop\Lumberjack\Post;
@@ -172,7 +206,7 @@ The following classes are 'macroable':
 
 ## What's new in v4.0
 
-### General 
+### General
 
 #### PHP Version
 
@@ -284,7 +318,9 @@ $value2->name; // 'Adam'
 
 Head over to the "Using the Container" docs to learn more:
 
-{% page-ref page="container/using-the-container.md" %}
+{% content-ref url="container/using-the-container.md" %}
+[using-the-container.md](container/using-the-container.md)
+{% endcontent-ref %}
 
 ### Features
 
@@ -300,13 +336,17 @@ To make your development lives easier, there are now some additional helper func
 
 Check out the Helpers documentation for more details:
 
-{% page-ref page="the-basics/helpers.md" %}
+{% content-ref url="the-basics/helpers.md" %}
+[helpers.md](the-basics/helpers.md)
+{% endcontent-ref %}
 
 #### Query Builder
 
-We've baked-in the [rareloop/lumberjack-querybuilder](https://github.com/Rareloop/lumberjack-querybuilder) package into the core. You now get an expressive, fluent and explicit way of querying data in WordPress out-of-the-box with Lumberjack. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class_Reference/WP_Query) to query posts \(of any type\) and means you do not have to worry about "the loop".
+We've baked-in the [rareloop/lumberjack-querybuilder](https://github.com/Rareloop/lumberjack-querybuilder) package into the core. You now get an expressive, fluent and explicit way of querying data in WordPress out-of-the-box with Lumberjack. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class\_Reference/WP\_Query) to query posts (of any type) and means you do not have to worry about "the loop".
 
-{% page-ref page="the-basics/query-builder.md" %}
+{% content-ref url="the-basics/query-builder.md" %}
+[query-builder.md](the-basics/query-builder.md)
+{% endcontent-ref %}
 
 #### Sessions
 
@@ -336,7 +376,9 @@ session()->forget('key');
 
 Be sure to read the Sessions documentation for a more in-depth look:
 
-{% page-ref page="the-basics/session.md" %}
+{% content-ref url="the-basics/session.md" %}
+[session.md](the-basics/session.md)
+{% endcontent-ref %}
 
 #### Interacting with the request
 
@@ -405,7 +447,9 @@ $request->has('name');
 
 You can read the HTTP Requests documentation for more information:
 
-{% page-ref page="the-basics/http-requests.md" %}
+{% content-ref url="the-basics/http-requests.md" %}
+[http-requests.md](the-basics/http-requests.md)
+{% endcontent-ref %}
 
 ### Documentation
 
@@ -417,3 +461,4 @@ We have also added/revisited some of the documentation. We recommend checking th
 * [Using the Container](container/using-the-container.md) - Revisited docs after the changes to the container's behaviour
 * [Helpers](the-basics/helpers.md) - Added more helpers
 
+[^1]: 

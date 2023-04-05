@@ -9,7 +9,7 @@ description: >-
 You can create a collection in a couple of ways:
 
 ```php
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 $data = new Collection(['Jayne', 'Milo']);
 
@@ -35,19 +35,14 @@ $data = collect(['Jayne', 'Milo']);
 $firstName = $data->first();
 ```
 
-The collection class that Lumberjack uses comes from Laravel, [via a split package by Tighten Co.](https://github.com/tightenco/collect)
-
-For a list of the available methods, please refer to their documentation: [https://laravel.com/docs/5.8/collections\#available-methods](https://laravel.com/docs/5.8/collections#available-methods)
+For a list of the available methods, please refer to their documentation: [https://laravel.com/docs/9.x/collections#available-methods](https://laravel.com/docs/9.x/collections#available-methods)
 
 {% hint style="info" %}
-Note: Laravel's collections may change over time as the add/remove features etc. Make sure you are always referring to the correct version of their documentation.  
-  
-Lumberjack will use the latest collections version for Laravel `v5.x` _\(with the minimum version being `v5.6`\)_
+Note: Laravel's collections may change over time as they add/remove features etc. Make sure you are always referring to the correct version of their documentation.
 {% endhint %}
 
 ### Extending collections
 
-Similar to post types and the query builder, you can add your own methods to the collection class using macros. For more information about this, please refer to Laravel's documentation: 
+Similar to post types and the query builder, you can add your own methods to the collection class using macros. For more information about this, please refer to Laravel's documentation:
 
-[https://laravel.com/docs/5.8/collections\#extending-collections](https://laravel.com/docs/5.8/collections#extending-collections)
-
+[https://laravel.com/docs/9.x/collections#extending-collections](https://laravel.com/docs/9.x/collections#extending-collections)

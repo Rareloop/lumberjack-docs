@@ -1,5 +1,51 @@
 # Upgrade Guide
 
+## Upgrading to v6 from from v5
+
+We aim to document all the changes that could impact your theme, and there may only be a portion that are applicable to your theme.
+
+Lumberjack v6 **adds support for PHP 8.1**.
+
+### Replacing "tightenco/collect"
+
+[Illuminate's collection package](https://packagist.org/packages/illuminate/collections) "collect" has been separated from the core Laravel codebase and therefore the Tightenco package is no longer necessary.
+
+Update namespaces for any support `Tightenco\Collect` classes you are using.
+
+For example, change these:
+
+```php
+use Tightenco\Collect\Support\Collection;
+use Tightenco\Collect\Support\Arr;
+```
+
+To these:
+
+```php
+use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
+```
+
+### Upgrading "rareloop/lumberjack-primer"
+
+If you are using [Primer](https://github.com/rareloop/primer) with Lumberjack, you will need to also upgrade the `rareloop/lumberjack-primer` package to v2.\
+\
+From:
+
+```json
+"rareloop/lumberjack-primer": "^v1.0.0",
+```
+
+To:
+
+```json
+"rareloop/lumberjack-primer": "^v2.0.0",
+```
+
+## Upgrading from v4.3 to v5
+
+There is nothing that requires upgrading between these versions.
+
 ## Upgrading to v4.3 from v4.2
 
 There is nothing that requires upgrading between these versions.
@@ -10,7 +56,7 @@ We aim to document all the changes that could impact your theme, and there may o
 
 ### Extending controllers
 
-Create `app/Http/Controllers/Controller.php`  with the following contents:
+Create `app/Http/Controllers/Controller.php` with the following contents:
 
 ```php
 <?php
@@ -134,7 +180,7 @@ No changes should be required to your application logic as Zend subclasses will 
 **Likelihood Of Impact: Medium**
 {% endhint %}
 
-The `bind()` method on the `Application` container is no longer a singleton by default when the value \(2nd param\) is not a primitive or object instance.
+The `bind()` method on the `Application` container is no longer a singleton by default when the value (2nd param) is not a primitive or object instance.
 
 When [binding a concrete implementation to an interface](container/using-the-container.md#set-concrete-implementations-for-interfaces), using singletons by default can create unexpected side affects as state is maintained across instances.
 
@@ -160,9 +206,11 @@ $object2 = $app->get(App\AppInterface::class);
 $object1 === $object2; // false
 ```
 
-{% page-ref page="container/using-the-container.md" %}
+{% content-ref url="container/using-the-container.md" %}
+[using-the-container.md](container/using-the-container.md)
+{% endcontent-ref %}
 
-### `ServerRequest` class \(optional\)
+### `ServerRequest` class (optional)
 
 {% hint style="warning" %}
 **Likelihood Of Impact: Optional, but recommended**
@@ -170,13 +218,13 @@ $object1 === $object2; // false
 
 If you're injecting an instance of the Diactoros `ServerRequest` class into a Controller, you can now switch this out for the following class if you want to benefit from some of the [new helper functions](the-basics/http-requests.md#usage):
 
-```text
+```
 Rareloop\Lumberjack\Http\ServerRequest
 ```
 
 For example:
 
-```text
+```
 use Rareloop\Lumberjack\Http\ServerRequest;
 
 class MyController
@@ -233,7 +281,9 @@ $request->input('name', 'Jane');
 $request->has('name');
 ```
 
-{% page-ref page="the-basics/http-requests.md" %}
+{% content-ref url="the-basics/http-requests.md" %}
+[http-requests.md](the-basics/http-requests.md)
+{% endcontent-ref %}
 
 ### View Models
 
@@ -243,7 +293,7 @@ $request->has('name');
 This is a previously undocumented feature. If you are using ViewModels, this is a major change to how they work. However, if you are not using ViewModels you do not need to do anything.
 {% endhint %}
 
-View Models are simple classes that allow you to transform data that would otherwise be defined in your controller. This allows for better encapsulation of code and allows your code to be re-used across your controllers \(and even across themes\).
+View Models are simple classes that allow you to transform data that would otherwise be defined in your controller. This allows for better encapsulation of code and allows your code to be re-used across your controllers (and even across themes).
 
 #### Upgrading existing ViewModels
 
@@ -313,7 +363,7 @@ $app->singleton(HandlerInterface::class, Handler::class);
 **Likelihood Of Impact: Very low**
 {% endhint %}
 
-`Helpers::app()` \(and the `app()` global counterpart\) no longer use the `make()` method of the Application instance and now rely on `get()`. This provides much more consistent behaviour with other uses of the Container. If you still want to use the helpers to get `make()` behaviour you can change your code.
+`Helpers::app()` (and the `app()` global counterpart) no longer use the `make()` method of the Application instance and now rely on `get()`. This provides much more consistent behaviour with other uses of the Container. If you still want to use the helpers to get `make()` behaviour you can change your code.
 
 From:
 
@@ -339,13 +389,13 @@ If you resolve an instance of the `Router` class from the container, you'll need
 
 From:
 
-```text
+```
 use Rareloop\Router\Router
 ```
 
 To:
 
-```text
+```
 Rareloop\Lumberjack\Http\Router
 ```
 
@@ -358,4 +408,3 @@ Rareloop\Lumberjack\Http\Router
 The `http-interop/http-server-middleware` package has been deprecated in favour of the now official PSR-15 interfaces found in `psr/http-server-middleware`.
 
 Make sure any middleware used now complies with the `Psr\Http\Server\MiddlewareInterface` interface.
-
