@@ -1,6 +1,6 @@
 # Query Builder
 
-Lumberjack has a built-in query builder which provides an expressive, fluent and explicit way of querying data in WordPress. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class_Reference/WP_Query) to query posts \(of any type\) and means you do not have to worry about "the loop".
+Lumberjack has a built-in query builder which provides an expressive, fluent and explicit way of querying data in WordPress. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class\_Reference/WP\_Query) to query posts (of any type) and means you do not have to worry about "the loop".
 
 There are 2 ways in which you can use the query builder. Either on a [Post Type](post-types.md):
 
@@ -60,7 +60,7 @@ dump($employees);
 */
 ```
 
-The collection contains instances of the `Employee` class. This is extremely powerful as you now have access to all the behaviours that come with employees, as defined in your post type class. In this case, you may have a `photoUrl()` method on an `Employee` that knows \(encapsulates\) how to get the correct size image from the featured image:
+The collection contains instances of the `Employee` class. This is extremely powerful as you now have access to all the behaviours that come with employees, as defined in your post type class. In this case, you may have a `photoUrl()` method on an `Employee` that knows (encapsulates) how to get the correct size image from the featured image:
 
 ```php
 class Employee extends Post
@@ -101,7 +101,9 @@ The example above is making use of Timber's `thumbnail()` method on a [Post](htt
 
 _If collections are new to you, be sure the check out the documentation on them:_
 
-{% page-ref page="collections.md" %}
+{% content-ref url="collections.md" %}
+[collections.md](collections.md)
+{% endcontent-ref %}
 
 ### Query scopes
 
@@ -258,10 +260,10 @@ $query = new WP_Query($parameters);
 
 _Alternatively, you can add your own methods to the query builder using macros. See_ [_Extending the Query Builder_](query-builder.md#extending-the-query-builder)_._
 
-### wherePostType\($postType\)
+### wherePostType($postType)
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
+| Parameter   | Type                | Description         |
+| ----------- | ------------------- | ------------------- |
 | `$postType` | `string` \| `array` | e.g. 'post', 'page' |
 
 Scope the query to a particular post type, or post types.
@@ -283,40 +285,40 @@ When using the query builder from a post type, the query is automatically scoped
 $jobs = Job::builder()->get();
 ```
 
-_Reference:_ [_WP\_Query - Type Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Type_Parameters)\_\_
+_Reference:_ [_WP\_Query - Type Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Type\_Parameters)\_\_
 
-### whereIdIn\(array $ids\)
+### whereIdIn(array $ids)
 
-| Parameters | Type | Description |
-| :--- | :--- | :--- |
-| `$ids` | `array` | An array of post IDs |
+| Parameters | Type    | Description          |
+| ---------- | ------- | -------------------- |
+| `$ids`     | `array` | An array of post IDs |
 
 Scope the query to only look for specific post IDs.
 
 Sets the `post__in` argument in `WP_Query`.
 
-_Reference:_ [_WP\_Query - Post & Page Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Post_.26_Page_Parameters)\_\_
+_Reference:_ [_WP\_Query - Post & Page Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Post\_.26\_Page\_Parameters)\_\_
 
-### whereIdNotIn\(array $ids\)
+### whereIdNotIn(array $ids)
 
-| Parameters | Type | Description |
-| :--- | :--- | :--- |
-| `$ids` | `array` | An array of post IDs |
+| Parameters | Type    | Description          |
+| ---------- | ------- | -------------------- |
+| `$ids`     | `array` | An array of post IDs |
 
 Scope the query to exclude specific post IDs.
 
 Sets the `post__not_in` argument in `WP_Query`.
 
-_Reference:_ [_WP\_Query - Post & Page Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Post_.26_Page_Parameters)\_\_
+_Reference:_ [_WP\_Query - Post & Page Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Post\_.26\_Page\_Parameters)\_\_
 
-### whereStatus\(\)
+### whereStatus()
 
 This method can either take an array of statuses, or multiple parameters for each status:
 
 **Array of statuses:**
 
-| Parameters | Type | Description |
-| :--- | :--- | :--- |
+| Parameters  | Type    | Description                                     |
+| ----------- | ------- | ----------------------------------------------- |
 | `$statuses` | `array` | An array of statuses. e.g. `publish` or `draft` |
 
 ```php
@@ -325,11 +327,11 @@ $query->whereStatus(['publish', 'draft']);
 
 **Multiple parameters:**
 
-| Parameters | Type | Description |
-| :--- | :--- | :--- |
-| `$status` | `string` | A status. e.g. `publish` or `draft` |
-| `$status` | `string` | A status. e.g. `publish` or `draft` |
-| ... | ... | ... |
+| Parameters | Type     | Description                         |
+| ---------- | -------- | ----------------------------------- |
+| `$status`  | `string` | A status. e.g. `publish` or `draft` |
+| `$status`  | `string` | A status. e.g. `publish` or `draft` |
+| ...        | ...      | ...                                 |
 
 ```php
 $query->whereStatus('publish', 'draft');
@@ -339,20 +341,20 @@ Scope the query to only include posts with the given status. By default WordPres
 
 Sets the `post_status` argument in `WP_Query`.
 
-_Reference:_ [_WP\_Query - Status Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Status_Parameters)\_\_
+_Reference:_ [_WP\_Query - Status Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Status\_Parameters)\_\_
 
-### whereMeta\($key, $value, $compare = '=', $type = null\)
+### whereMeta($key, $value, $compare = '=', $type = null)
 
-| Parameters | Type | Description |
-| :--- | :--- | :--- |
-| `$key` | `string` | The meta key |
-| `$value` | `string` | The meta value |
-| `$compare` | `string` | Optional. Defaults to `=` |
-| `$type` | `string` \| `null` | Optional. Defaults to `null`. Pass in a value here to define the custom field type. e.g. `numeric`. |
+| Parameters | Type               | Description                                                                                         |
+| ---------- | ------------------ | --------------------------------------------------------------------------------------------------- |
+| `$key`     | `string`           | The meta key                                                                                        |
+| `$value`   | `string`           | The meta value                                                                                      |
+| `$compare` | `string`           | Optional. Defaults to `=`                                                                           |
+| `$type`    | `string` \| `null` | Optional. Defaults to `null`. Pass in a value here to define the custom field type. e.g. `numeric`. |
 
 Scope posts that have the specified custom meta fields.
 
-Adds an array of meta query arguments to the array of `meta_query`  arguments on `WP_Query`.
+Adds an array of meta query arguments to the array of `meta_query` arguments on `WP_Query`.
 
 ```php
 'meta_query' => [
@@ -365,7 +367,7 @@ Adds an array of meta query arguments to the array of `meta_query`  arguments on
 ```
 
 {% hint style="info" %}
-**Note:** `meta_query` takes an **array** of meta query arguments **arrays** \(it takes an array of arrays\) 
+**Note:** `meta_query` takes an **array** of meta query arguments **arrays** (it takes an array of arrays)
 {% endhint %}
 
 The above example can be written like so:
@@ -399,33 +401,15 @@ This will yield the following parameters:
 ]
 ```
 
-_Reference:_ [_WP\_Query - Custom Field Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters)\_\_
+_Reference:_ [_WP\_Query - Custom Field Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Custom\_Field\_Parameters)\_\_
 
-### whereMetaRelationshipIs\(string $relation\)
+### whereMetaRelationshipIs(string $relation)
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Parameters</th>
-      <th style="text-align:left">Type</th>
-      <th style="text-align:left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>$relation</code>
-      </td>
-      <td style="text-align:left"><code>string</code>
-      </td>
-      <td style="text-align:left">
-        <p>The type of relationship between meta queries.</p>
-        <p></p>
-        <p>Accepts <code>and</code> &amp; <code>or</code>
-        </p>
-      </td>
-    </tr>
-  </tbody>
-</table>Sets the `relation` field for your meta queries, for `WP_Query`.
+| Parameters | Type | Description |
+| ---------- | ---- | ----------- |
+
+| `$relation` | `string` | <p>The type of relationship between meta queries.</p><p>Accepts <code>and</code> &#x26; <code>or</code></p> |
+| ----------- | -------- | ----------------------------------------------------------------------------------------------------------- |
 
 ```php
 $query->whereMeta('lead', 'Lorem ipsum %', 'LIKE')
@@ -452,38 +436,38 @@ This will yield the following parameters, adding the `'relation' => 'or'` to the
 ]
 ```
 
-_Reference:_ [_WP\_Query - Custom Field Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters)\_\_
+_Reference:_ [_WP\_Query - Custom Field Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Custom\_Field\_Parameters)\_\_
 
-### limit\($limit\)
+### limit($limit)
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| `$limit` | `int` | e.g. 25 |
+| Parameter | Type  | Description |
+| --------- | ----- | ----------- |
+| `$limit`  | `int` | e.g. 25     |
 
 Set the number of results to get back from the query.
 
 Sets the `posts_per_page` argument in `WP_Query`.
 
-_Reference:_ [_WP\_Query - Pagination Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Pagination_Parameters)\_\_
+_Reference:_ [_WP\_Query - Pagination Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Pagination\_Parameters)\_\_
 
-### offset\($offset\)
+### offset($offset)
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| `$offset` | `int` | e.g. 50 |
+| Parameter | Type  | Description |
+| --------- | ----- | ----------- |
+| `$offset` | `int` | e.g. 50     |
 
 Set the number of results to displace or pass over.
 
 Sets the `offset` argument in `WP_Query`.
 
-_Reference:_ [_WP\_Query - Pagination Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Pagination_Parameters)\_\_
+_Reference:_ [_WP\_Query - Pagination Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Pagination\_Parameters)\_\_
 
-### orderBy\($orderBy, $order = 'asc'\)
+### orderBy($orderBy, $order = 'asc')
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| `$orderBy` | `string` | e.g. 'menu\_order' |
-| `$order` | `string` | Optional. Defaults to 'asc' \(ascending\) |
+| Parameter  | Type     | Description                             |
+| ---------- | -------- | --------------------------------------- |
+| `$orderBy` | `string` | e.g. 'menu\_order'                      |
+| `$order`   | `string` | Optional. Defaults to 'asc' (ascending) |
 
 Sort retrieved posts by parameter, e.g. date, title, menu\_order.
 
@@ -493,57 +477,28 @@ Sets the `orderby` and `order` arguments in `WP_Query`.
 $query->orderBy('title', 'asc');
 ```
 
-_Reference:_ [_WP\_Query - Order & Orderby Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters)\_\_
+_Reference:_ [_WP\_Query - Order & Orderby Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Order\_.26\_Orderby\_Parameters)\_\_
 
-### orderByMeta\($metaKey, $order = 'asc', $type = null\)
+### orderByMeta($metaKey, $order = 'asc', $type = null)
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Parameter</th>
-      <th style="text-align:left">Type</th>
-      <th style="text-align:left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>$metaKey</code>
-      </td>
-      <td style="text-align:left"><code>string</code>
-      </td>
-      <td style="text-align:left">The meta key to order by</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>$order</code>
-      </td>
-      <td style="text-align:left"><code>string</code>
-      </td>
-      <td style="text-align:left">Optional. Defaults to &apos;asc&apos; (ascending)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>$type</code>
-      </td>
-      <td style="text-align:left"><code>string</code>
-      </td>
-      <td style="text-align:left">
-        <p>Optional. Defaults to null.</p>
-        <p></p>
-        <p>Sorting will be alphabetical for strings. When dealing with numbers, you
-          can get some unexpected results (e.g. 1, 3, 34, 4, 56, 6, etc, rather than
-          1, 3, 4, 6, 34, 56 as you might naturally expect).</p>
-        <p></p>
-        <p>Pass in &apos;numeric&apos; here if you plan on sorting numbers.</p>
-      </td>
-    </tr>
-  </tbody>
-</table>Sets the `orderby` argument for `WP_Query` to `meta_value` when ordering strings, and `meta_value_num` when ordering numbers.
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 
-_Reference:_ [_WP\_Query - Order & Orderby Parameters_](https://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters)\_\_
+| `$metaKey` | `string` | The meta key to order by |
+| ---------- | -------- | ------------------------ |
 
-### as\($postClass\)
+| `$order` | `string` | Optional. Defaults to 'asc' (ascending) |
+| -------- | -------- | --------------------------------------- |
 
-| Parameters | Type | Description |
-| :--- | :--- | :--- |
+| `$type` | `string` | <p>Optional. Defaults to null.</p><p>Sorting will be alphabetical for strings. When dealing with numbers, you can get some unexpected results (e.g. 1, 3, 34, 4, 56, 6, etc, rather than 1, 3, 4, 6, 34, 56 as you might naturally expect).</p><p>Pass in 'numeric' here if you plan on sorting numbers.</p> |
+| ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+_Reference:_ [_WP\_Query - Order & Orderby Parameters_](https://codex.wordpress.org/Class\_Reference/WP\_Query#Order\_.26\_Orderby\_Parameters)\_\_
+
+### as($postClass)
+
+| Parameters   | Type     | Description                                                         |
+| ------------ | -------- | ------------------------------------------------------------------- |
 | `$postClass` | `string` | The name of the post class that you want the results transformed to |
 
 When using `WP_Query`, you get an array of `WP_Post` objects back. The query builder will instead return an array of `Rareloop\Lumberjack\Post` objects back.
@@ -568,9 +523,9 @@ $events = Event::get();
 ```
 {% endhint %}
 
-_Reference:_ [_Timber - get\_posts\(\)_](https://timber.github.io/docs/reference/timber/#get-posts)\_\_
+_Reference:_ [_Timber - get\_posts()_](https://timber.github.io/docs/reference/timber/#get-posts)\_\_
 
-### get\(\)
+### get()
 
 Execute the query and return a `Collection` of post objects.
 
@@ -579,7 +534,7 @@ $posts = $query->whereMeta('price', 100, '>', 'numeric')
     ->get();
 ```
 
-### first\(\)
+### first()
 
 Execute the query and return the first post object. Returns `null` if there are no results.
 
@@ -588,7 +543,7 @@ $post = $query->whereMeta('price', 100, '>', 'numeric')
     ->first();
 ```
 
-### clone\(\)
+### clone()
 
 Duplicates a new instance of the query builder with all the current parameters. You can modify this query builder instance separately to the original.
 
@@ -609,7 +564,7 @@ $counts = [
 
 ## Extending the query builder
 
-The Lumberjack `QueryBuilder` class can be extended with custom functionality at runtime \(the class is "macroable"\). The following example adds a `search` method to the `QueryBuilder` class that can be used to filter results based on a keyword search:
+The Lumberjack `QueryBuilder` class can be extended with custom functionality at runtime (the class is "macroable"). The following example adds a `search` method to the `QueryBuilder` class that can be used to filter results based on a keyword search:
 
 ```php
 use Rareloop\Lumberjack\QueryBuilder;
@@ -617,13 +572,13 @@ use Rareloop\Lumberjack\QueryBuilder;
 // Add custom function
 QueryBuilder::macro('search', function ($term) {
     $this->params['s'] = $term;
-    
+
     return $this;
 });
 
 QueryBuilder::macro('writtenByCurrentUser', function () {
     $this->params['author'] = get_current_user_id();
-    
+
     return $this;
 });
 
@@ -632,11 +587,10 @@ $posts = (new QueryBuilder())
     ->search('Elephant');
     ->writtenByCurrentUser()
     ->get();
-    
+
 // Or on a post type
 $posts = Post::builder()
     ->search('Elephant')
     ->writtenByCurrentUser()
     ->get();
 ```
-

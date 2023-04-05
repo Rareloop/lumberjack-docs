@@ -16,7 +16,7 @@ Route closures and controller functions are automatically dependency injected fr
 
 Routing is handled by using the `Rareloop\Lumberjack\Facades\Router` Facade. The convention is to create your Routes in the `routes.php` file at the base of your theme.
 
-Typically, you only need to allow one HTTP verb for a route \(e.g. `POST` or `GET`\). To create a route, use the HTTP verb as the method name. The first parameter is the URI and the second is the code you wish to execute when that route is matched.
+Typically, you only need to allow one HTTP verb for a route (e.g. `POST` or `GET`). To create a route, use the HTTP verb as the method name. The first parameter is the URI and the second is the code you wish to execute when that route is matched.
 
 ```php
 Router::get('test/route', function () {});
@@ -28,14 +28,16 @@ Router::options('test/route', function () {});
 ```
 
 {% hint style="info" %}
-WordPress doesn't know anything about custom routes, so you may need to manually handle things like the page meta \(e.g. title\). Generally it is best to use WordPress where you can and use custom routes for anything non-standard.
+
+{% endhint %}
+
+WordPress doesn't know anything about custom routes, so you may need to manually handle things like the page meta (e.g. title). Generally it is best to use WordPress where you can and use custom routes for anything non-standard.
 
 Some good candidates for a custom route could include:
 
 * An AJAX endpoint
-* An endpoint to POST a form to \(which could send an email\)
-* A custom e-commerce checkout workflow \(e.g. basket, checkout, confirmation pages\)
-{% endhint %}
+* An endpoint to POST a form to (which could send an email)
+* A custom e-commerce checkout workflow (e.g. basket, checkout, confirmation pages)
 
 ### Setting the page title for custom routes
 
@@ -52,7 +54,7 @@ class TestController
             return 'My Custom Title';
         });
     }
-    
+
     public function show()
     {
         return 'Hello World';
@@ -79,32 +81,30 @@ class TestController
             return $title;
         });
     }
-    
+
     protected function setPageTitle(string $title) {
         $this->pageTitle = $title;
     }
-    
+
     public function basket()
     {
         $this->setPageTitle('Basket');
-        
+
         return 'Basket...';
     }
-    
+
     public function checkout()
     {
         $this->setPageTitle('Checkout');
-        
+
         return 'Checkout...';
     }
 }
 ```
 
-
-
 ## Route Parameters
 
-Parameters can be defined on routes using the `{keyName}` syntax. When a route that contains parameters is matched, those parameters are available as injectable parameters in your callback/controller. 
+Parameters can be defined on routes using the `{keyName}` syntax. When a route that contains parameters is matched, those parameters are available as injectable parameters in your callback/controller.
 
 **The name of the route parameter and the controller parameter must be the same.**
 
@@ -238,19 +238,19 @@ Router::map(['GET', 'POST'], 'posts/list', function () {
 
 `map()` takes 3 parameters:
 
-* `methods` \(array\): list of matching HTTP methods, valid values:
+* `methods` (array): list of matching HTTP methods, valid values:
   * `GET`
   * `POST`
   * `PUT`
   * `PATCH`
   * `DELETE`
   * `OPTIONS`
-* `uri` \(string\): The URI to match against
-* `action` \(function\|string\): Either a closure or a Controller string
+* `uri` (string): The URI to match against
+* `action` (function|string): Either a closure or a Controller string
 
 ## Extending the Router
 
-The Lumberjack `Router` class can be extended with custom functionality at runtime \(the class is "macroable"\). The following example adds an `redirect` method to the `Router` class that can be used to easily declare redirect routes, without needing to handle the response logic yourself:
+The Lumberjack `Router` class can be extended with custom functionality at runtime (the class is "macroable"). The following example adds an `redirect` method to the `Router` class that can be used to easily declare redirect routes, without needing to handle the response logic yourself:
 
 ```php
 use Rareloop\Lumberjack\Facades\Router;
@@ -277,7 +277,7 @@ Route::macro('adminOnly', function () {
     $this->middleware(new App\AdminMiddlewareOne);
     $this->middleware(new App\AdminMiddlewareTwo);
     $this->middleware(new App\AdminMiddlewareThree);
-    
+
     return $this;
 });
 
@@ -288,4 +288,3 @@ Router::get('route/uri', 'AdminController@action')->adminOnly();
 {% hint style="warning" %}
 Remember to `return $this` in your custom `Route` macro extensions so that the API remains chainable.
 {% endhint %}
-

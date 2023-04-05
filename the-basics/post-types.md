@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Typically in WordPress when you're querying posts you get [`WP_Post`](https://codex.wordpress.org/Class_Reference/WP_Post) objects back. Timber have taken this a step further and return a `Timber/Post` object instead. This [has a ton of great helper methods and properties](https://timber.github.io/docs/reference/timber-post/) which makes it easier and more expressive to use.
+Typically in WordPress when you're querying posts you get [`WP_Post`](https://codex.wordpress.org/Class\_Reference/WP\_Post) objects back. Timber have taken this a step further and return a `Timber/Post` object instead. This [has a ton of great helper methods and properties](https://timber.github.io/docs/reference/timber-post/) which makes it easier and more expressive to use.
 
 ```php
 use Timber\Post;
@@ -60,7 +60,9 @@ class Product extends Post
 
 _If collections are new to you, be sure the check out the documentation on them:_
 
-{% page-ref page="collections.md" %}
+{% content-ref url="collections.md" %}
+[collections.md](collections.md)
+{% endcontent-ref %}
 
 ## Register Custom Post Types
 
@@ -108,7 +110,7 @@ class Product extends Post
 }
 ```
 
-Lumberjack will handle the registering of the post type for you. In order to do that, it requires 2 methods \(documented above\):
+Lumberjack will handle the registering of the post type for you. In order to do that, it requires 2 methods (documented above):
 
 * `getPostType()`
 * `getPostTypeConfig()`
@@ -160,7 +162,7 @@ $products = Product::query(['s' => 'Toy Car']);
 
 ## Extending Post Types
 
-The Lumberjack `Post` class can be extended with custom functionality at runtime \(the class is "macroable"\). The following example adds an `acf` method to the `Post` class that can be used to access Advanced Custom Field \(ACF\) field values:
+The Lumberjack `Post` class can be extended with custom functionality at runtime (the class is "macroable"). The following example adds an `acf` method to the `Post` class that can be used to access Advanced Custom Field (ACF) field values:
 
 ```php
 use Rareloop\Lumberjack\Post;
@@ -175,5 +177,4 @@ $post = new Post;
 $value = $post->acf('custom_field_name');
 ```
 
->
-
+\>

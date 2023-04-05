@@ -18,7 +18,7 @@ use Rareloop\Lumberjack\QueryBuilder;
 // Add custom function
 QueryBuilder::macro('search', function ($term) {
     $this->params['s'] = $term;
-    
+
     return $this;
 });
 
@@ -29,7 +29,9 @@ $query->search('Elephant');
 $posts = $query->first();
 ```
 
-{% page-ref page="the-basics/query-builder.md" %}
+{% content-ref url="the-basics/query-builder.md" %}
+[query-builder.md](the-basics/query-builder.md)
+{% endcontent-ref %}
 
 #### Define middleware in controllers
 
@@ -57,9 +59,11 @@ class MyController extends Controller
 }
 ```
 
-{% page-ref page="the-basics/middleware.md" %}
+{% content-ref url="the-basics/middleware.md" %}
+[middleware.md](the-basics/middleware.md)
+{% endcontent-ref %}
 
-#### Config has\(\)
+#### Config has()
 
 Lumberjack's configuration class now lets you check whether a config file contains a given item:
 
@@ -69,11 +73,13 @@ if (Config::has('app.mySetting') {
 }
 ```
 
-Note that the `has` method only checks whether the config item exists, regardless of its value. 
+Note that the `has` method only checks whether the config item exists, regardless of its value.
 
 If you set `app.mySetting` to an empty value such as `false` or `null`, `has('app.mySetting')` will return `true`.
 
-{% page-ref page="getting-started/configuration.md" %}
+{% content-ref url="getting-started/configuration.md" %}
+[configuration.md](getting-started/configuration.md)
+{% endcontent-ref %}
 
 ### Documentation
 
@@ -89,9 +95,9 @@ We have also added/revisited some of the documentation. We recommend checking th
 
 #### Extending Lumberjack with Macros
 
-You can now extend core Lumberjack classes and add your own functionality without needing to rely on inheritance. Instead, you can add macros \(custom functions\) to the core classes themselves.
+You can now extend core Lumberjack classes and add your own functionality without needing to rely on inheritance. Instead, you can add macros (custom functions) to the core classes themselves.
 
-Here's an example macro, that adds a custom `acf()` method on `Rareloop\Lumberjack\Post`. 
+Here's an example macro, that adds a custom `acf()` method on `Rareloop\Lumberjack\Post`.
 
 ```php
 use Rareloop\Lumberjack\Post;
@@ -115,7 +121,7 @@ The following classes are 'macroable':
 
 ## What's new in v4.0
 
-### General 
+### General
 
 #### PHP Version
 
@@ -227,7 +233,9 @@ $value2->name; // 'Adam'
 
 Head over to the "Using the Container" docs to learn more:
 
-{% page-ref page="container/using-the-container.md" %}
+{% content-ref url="container/using-the-container.md" %}
+[using-the-container.md](container/using-the-container.md)
+{% endcontent-ref %}
 
 ### Features
 
@@ -243,13 +251,17 @@ To make your development lives easier, there are now some additional helper func
 
 Check out the Helpers documentation for more details:
 
-{% page-ref page="the-basics/helpers.md" %}
+{% content-ref url="the-basics/helpers.md" %}
+[helpers.md](the-basics/helpers.md)
+{% endcontent-ref %}
 
 #### Query Builder
 
-We've baked-in the [rareloop/lumberjack-querybuilder](https://github.com/Rareloop/lumberjack-querybuilder) package into the core. You now get an expressive, fluent and explicit way of querying data in WordPress out-of-the-box with Lumberjack. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class_Reference/WP_Query) to query posts \(of any type\) and means you do not have to worry about "the loop".
+We've baked-in the [rareloop/lumberjack-querybuilder](https://github.com/Rareloop/lumberjack-querybuilder) package into the core. You now get an expressive, fluent and explicit way of querying data in WordPress out-of-the-box with Lumberjack. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class\_Reference/WP\_Query) to query posts (of any type) and means you do not have to worry about "the loop".
 
-{% page-ref page="the-basics/query-builder.md" %}
+{% content-ref url="the-basics/query-builder.md" %}
+[query-builder.md](the-basics/query-builder.md)
+{% endcontent-ref %}
 
 #### Sessions
 
@@ -279,7 +291,9 @@ session()->forget('key');
 
 Be sure to read the Sessions documentation for a more in-depth look:
 
-{% page-ref page="the-basics/session.md" %}
+{% content-ref url="the-basics/session.md" %}
+[session.md](the-basics/session.md)
+{% endcontent-ref %}
 
 #### Interacting with the request
 
@@ -348,7 +362,9 @@ $request->has('name');
 
 You can read the HTTP Requests documentation for more information:
 
-{% page-ref page="the-basics/http-requests.md" %}
+{% content-ref url="the-basics/http-requests.md" %}
+[http-requests.md](the-basics/http-requests.md)
+{% endcontent-ref %}
 
 ### Documentation
 
@@ -359,4 +375,3 @@ We have also added/revisited some of the documentation. We recommend checking th
 * [Sessions](the-basics/session.md) - New feature!
 * [Using the Container](container/using-the-container.md) - Revisited docs after the changes to the container's behaviour
 * [Helpers](the-basics/helpers.md) - Added more helpers
-
