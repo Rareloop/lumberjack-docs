@@ -44,14 +44,14 @@ Lumberjack comes with a handful of useful Facades. Below you can see which class
 
 | Facade | Class Reference | Container binding |
 | :--- | :--- | :--- |
-| Config | `Monolog\Logger` | `config` |
-| Log | `Rareloop\Lumberjack\Config` | `logger` |
+| Config | `Rareloop\Lumberjack\Config` | `config` |
+| Log | `Monolog\Logger` | `logger` |
 | Router | `Rareloop\Lumberjack\Http\Route` | `router` |
 | Session | `Rareloop\Lumberjack\Session\SessionManager` | `session` |
 
 ### Example usage
 
-All of Lumberjack's Facades live under the `Rareloop\Lumberjack\Facades` namespace, and can be used like so:
+All of Lumberjack's Facades live under the `Rareloop\Lumberjack\Facades` namespace.
 
 #### Config
 
@@ -104,3 +104,4 @@ $name = Session::get('name');
 ```
 
 Session is also available as a [Helper](https://docs.lumberjack.rareloop.com/the-basics/helpers#session)
+
