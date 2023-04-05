@@ -6,7 +6,7 @@ This section is in progress...
 
 ## Query Builder
 
-Lumberjack has a built-in query builder which provides an expressive, fluent and explicit way of querying data in WordPress. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class_Reference/WP_Query) to query posts \(of any type\) and means you do not have to worry about "the loop".
+Lumberjack has a built-in query builder which provides an expressive, fluent and explicit way of querying data in WordPress. It can be used instead of [WP\_Query](https://codex.wordpress.org/Class\_Reference/WP\_Query) to query posts (of any type) and means you do not have to worry about "the loop".
 
 There are 2 ways in which you can use the query builder. Either on a [Post Type](post-types.md):
 
@@ -36,7 +36,7 @@ $posts = QueryBuilder::wherePostType([
 
 This is the most common way to use the query builder. You can start querying posts simply by using the `Rareloop\Lumberjack\Post` class. To start a query, use the `builder()` method.
 
-```text
+```
 Post::builder();
 ```
 
@@ -69,13 +69,13 @@ dump($employees);
 Be sure to [check out the section on Collections](collections.md) if you're unfamiliar with them
 {% endhint %}
 
-The collection contains instances of the `Employee` class. This is extremely powerful as you now have access to all the behaviours that come with employees, as defined in your post type class. In this case, you may have a `photoUrl()` method on an `Employee` that knows \(encapsulates\) how to get the correct size image from the featured image:
+The collection contains instances of the `Employee` class. This is extremely powerful as you now have access to all the behaviours that come with employees, as defined in your post type class. In this case, you may have a `photoUrl()` method on an `Employee` that knows (encapsulates) how to get the correct size image from the featured image:
 
 ```php
 class Employee extends Post
 {
     ...
-        
+
     public function photoUrl() : string
     {
         $thumbnail = $this->thumbnail();
@@ -121,7 +121,7 @@ $posts = Post::whereIdIn($featuredPostIds)
     ->get();
 
 ...
-    
+
 // Get the latest 3 featured posts
 $featuredPostIds = [1, 2];
 
@@ -146,17 +146,17 @@ use Rareloop\Lumberjack\Post as LumberjackPost;
 class Post extends LumberjackPost
 {
     ...
-    
+
     public function scopeFeatured($query)
     {
         $featuredPostIds = [1, 2];
-        
+
         return $query->whereIdIn($featuredPostIds);    
     }
 }
 ```
 
-// Query scopes always need to start with the word `scope`, and should follow with the name of the method you 
+// Query scopes always need to start with the word `scope`, and should follow with the name of the method you
 
 Now we have a query scope, we can refactor our previous queries, making them more declarative and easier to change:
 
@@ -167,7 +167,7 @@ $posts = Post::featured()
     ->get();
 
 ...
-    
+
 // Get the latest 3 featured posts
 $posts = Post::featured()
     ->orderBy('date', 'desc')
@@ -193,7 +193,7 @@ use Rareloop\Lumberjack\Post as LumberjackPost;
 class Post extends LumberjackPost
 {
     ...
-    
+
     public function scopeExclude($query, $postId)
     {        
         return $query->whereIdNotIn([$postId]);    
@@ -208,11 +208,9 @@ $posts = Post::exclude(1)
     ->get();
 ```
 
----
-
 @ WordPress will automatically search for published posts, so for the majority of the time you don't need to worry about explicitly defining the status of posts you want to query.
 
-@ &gt; post\_status \(string / array\) - use post status. Retrieves posts by Post Status. Default value is 'publish', but if the user is logged in, 'private' is added. Public custom statuses are also included by default. And if the query is run in an admin context \(administration area or AJAX call\), protected statuses are added too. By default protected statuses are 'future', 'draft' and 'pending'. [https://codex.wordpress.org/Class\_Reference/WP\_Query](https://codex.wordpress.org/Class_Reference/WP_Query)
+@ > post\_status (string / array) - use post status. Retrieves posts by Post Status. Default value is 'publish', but if the user is logged in, 'private' is added. Public custom statuses are also included by default. And if the query is run in an admin context (administration area or AJAX call), protected statuses are added too. By default protected statuses are 'future', 'draft' and 'pending'. [https://codex.wordpress.org/Class\_Reference/WP\_Query](https://codex.wordpress.org/Class\_Reference/WP\_Query)
 
 You can also use the query builder on your own custom post types. Just make sure it extends the // class:
 
@@ -228,7 +226,7 @@ Now your custom post type has the full power of the query builder, and you can u
 
 #### Get the 3 most recent posts
 
-#### Get posts that match a given meta query \(ACF\)
+#### Get posts that match a given meta query (ACF)
 
 #### example of clone, whereIdIn and whereIdNotIn
 
@@ -252,4 +250,3 @@ All the available methods can be chained, with the exclusion of `getParameters` 
 ## Scope methods
 
 ## Extending the Query Builder
-
