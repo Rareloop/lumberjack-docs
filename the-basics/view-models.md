@@ -229,7 +229,7 @@ class MediaCardsViewModel extends ViewModel
      */
     public function toArray(): array
     {
-        return $this->cards();
+        return $this->cards->toArray();
     }
 }
 ```
